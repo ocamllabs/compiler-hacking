@@ -6,16 +6,16 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Tue, 17 Sep 2013 13:04:34 +0100</pubDate>
-    <lastBuildDate>Tue, 17 Sep 2013 13:04:34 +0100</lastBuildDate>
+    <pubDate>Tue, 17 Sep 2013 13:09:12 +0100</pubDate>
+    <lastBuildDate>Tue, 17 Sep 2013 13:09:12 +0100</lastBuildDate>
 
     
     <item>
       <title>Inaugural compiler hackers meeting</title>
-      <link>http://ocamllabs.github.com/compiler-hacking/compiler-hacking/2013/09/17/compiler-hacking-july-2013.html</link>
+      <link>http://ocamllabs.github.com/compiler-hacking/2013/09/17/compiler-hacking-july-2013.html</link>
       <pubDate>Tue, 17 Sep 2013 12:49:04 +0100</pubDate>
       <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
-      <guid>http://ocamllabs.github.com/compiler-hacking/compiler-hacking/2013/09/17/compiler-hacking-july-2013</guid>
+      <guid>http://ocamllabs.github.com/compiler-hacking/2013/09/17/compiler-hacking-july-2013</guid>
       <description>&lt;p&gt;The first OCaml Labs compiler hacking session brought together around twenty people from &lt;a href=&quot;http://www.cl.cam.ac.uk/projects/ocamllabs/&quot;&gt;OCaml Labs&lt;/a&gt;, the wider &lt;a href=&quot;http://www.cl.cam.ac.uk&quot;&gt;Computer Lab&lt;/a&gt;, and &lt;a href=&quot;http://www.citrix.com/&quot;&gt;various&lt;/a&gt; &lt;a href=&quot;http://www.arm.com/&quot;&gt;companies&lt;/a&gt; around Cambridge for an enjoyable few hours learning about and improving the OCaml compiler toolchain, fuelled by &lt;a href=&quot;http://www.cherryboxpizza.co.uk&quot;&gt;pizza&lt;/a&gt; and home-made ice cream (thanks, &lt;a href=&quot;http://philippewang.info/CL/&quot;&gt;Philippe&lt;/a&gt;!).&lt;/p&gt;
 
 &lt;p&gt;We benefited from the presence of a few &lt;a href=&quot;http://www.x9c.fr/&quot;&gt;experienced&lt;/a&gt; &lt;a href=&quot;http://danmey.org/&quot;&gt;compiler&lt;/a&gt; &lt;a href=&quot;http://lpw25.net/&quot;&gt;hackers&lt;/a&gt;, but for most of us it was the first attempt to modify the OCaml compiler internals.&lt;/p&gt;

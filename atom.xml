@@ -4,7 +4,7 @@
   <title>OCaml Labs compiler hacking</title>
   <link href="http://ocamllabs.github.com/compiler-hacking/"/>
   <link type="application/atom+xml" rel="self" href="http://ocamllabs.github.com/compiler-hacking/atom.xml"/>
-  <updated>2013-09-17T13:04:34+01:00</updated>
+  <updated>2013-09-17T13:09:12+01:00</updated>
   <id>http://ocamllabs.github.com/compiler-hacking/</id>
   <author>
     <name>OCaml Labs</name>
@@ -13,8 +13,8 @@
 
   
   <entry>
-    <id>http://ocamllabs.github.com/compiler-hacking/compiler-hacking/2013/09/17/compiler-hacking-july-2013</id>
-    <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/compiler-hacking/2013/09/17/compiler-hacking-july-2013.html"/>
+    <id>http://ocamllabs.github.com/compiler-hacking/2013/09/17/compiler-hacking-july-2013</id>
+    <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/2013/09/17/compiler-hacking-july-2013.html"/>
     <title>Inaugural compiler hackers meeting</title>
     <published>2013-09-17T12:49:04+01:00</published>
     <updated>2013-09-17T12:49:04+01:00</updated>
