@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+  <title>OCaml Labs compiler hacking</title>
+  <link href="http://ocamllabs.github.com/compiler-hacking/"/>
+  <link type="application/atom+xml" rel="self" href="http://ocamllabs.github.com/compiler-hacking/atom.xml"/>
+  <updated>2013-09-17T12:22:03+01:00</updated>
+  <id>http://ocamllabs.github.com/compiler-hacking/</id>
+  <author>
+    <name>OCaml Labs</name>
+    <email>cl-ocamllabs@lists.cam.ac.uk</email>
+  </author>
+
+  
+  <entry>
+    <id>http://ocamllabs.github.com/compiler-hacking/compiler-hacking-session/2013/09/17/compiler-hacking-july-2013</id>
+    <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/compiler-hacking-session/2013/09/17/compiler-hacking-july-2013.html"/>
+    <title>Inaugural compiler hackers meeting</title>
+    <published>2013-09-17T12:49:04+01:00</published>
+    <updated>2013-09-17T12:49:04+01:00</updated>
+    <author>
+      <name>OCaml Labs</name>
+      <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
+    </author>
+    <content type="html">&lt;p&gt;The first OCaml Labs compiler hacking session brought together around twenty people from &lt;a href=&quot;http://www.cl.cam.ac.uk/projects/ocamllabs/&quot;&gt;OCaml Labs&lt;/a&gt;, the wider &lt;a href=&quot;http://www.cl.cam.ac.uk&quot;&gt;Computer Lab&lt;/a&gt;, and &lt;a href=&quot;http://www.citrix.com/&quot;&gt;various&lt;/a&gt; &lt;a href=&quot;http://www.arm.com/&quot;&gt;companies&lt;/a&gt; around Cambridge for an enjoyable few hours learning about and improving the OCaml compiler toolchain, fuelled by &lt;a href=&quot;http://www.cherryboxpizza.co.uk&quot;&gt;pizza&lt;/a&gt; and home-made ice cream (thanks, &lt;a href=&quot;http://philippewang.info/CL/&quot;&gt;Philippe&lt;/a&gt;!).&lt;/p&gt;
+
+&lt;p&gt;We benefited from the presence of a few &lt;a href=&quot;http://www.x9c.fr/&quot;&gt;experienced&lt;/a&gt; &lt;a href=&quot;http://danmey.org/&quot;&gt;compiler&lt;/a&gt; &lt;a href=&quot;http://lpw25.net/&quot;&gt;hackers&lt;/a&gt;, but for most of us it was the first attempt to modify the OCaml compiler internals.&lt;/p&gt;
+
+&lt;p&gt;The first surprise of the day was the discovery that work on the &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;list of projects&lt;/a&gt; was underway before we even arrived!  Keen collaborators from The Internet had apparently spotted our triaged bug reports and &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=4323&quot;&gt;submitted&lt;/a&gt; &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=4737&quot;&gt;patches&lt;/a&gt; to Mantis.&lt;/p&gt;
+
+&lt;h3&gt;Standard library and runtime&lt;/h3&gt;
+
+&lt;p&gt;There was an exciting moment early on when it emerged that two teams had been working independently on the same issue!  When &lt;a href=&quot;https://github.com/jonludlam&quot;&gt;Jon Ludlam&lt;/a&gt; and &lt;a href=&quot;http://www.cl.cam.ac.uk/projects/ocamllabs/people/euan.html&quot;&gt;Euan Harris&lt;/a&gt; submitted a patch to add a &lt;code&gt;get_extension&lt;/code&gt; function to the &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml/libref/Filename.html&quot;&gt;&lt;code&gt;Filename&lt;/code&gt;&lt;/a&gt; module they found that they had been pipped to the post by &lt;a href=&quot;https://github.com/mcclurmc/&quot;&gt;Mike McClurg&lt;/a&gt;.  There&amp;#39;s still the judging stage to go, though, as the patches wait &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=5807&quot;&gt;on Mantis&lt;/a&gt; for official pronouncement from the Inria team. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://github.com/vbmithr&quot;&gt;Vincent Bernardoff&lt;/a&gt; also spent some time improving the standard library, &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=4919&quot;&gt;fleshing out the interface for translating between OCaml and C error codes&lt;/a&gt;, starting from a patch by Goswin von Brederlow.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/stedolan&quot;&gt;Stephen Dolan&lt;/a&gt; looked at a &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=1956&quot;&gt;long-standing issue&lt;/a&gt; with names exported by the OCaml runtime that can clash with other libraries, and submitted a patch which hides the sole remaining offender for the runtime library.  As he noted in the comments, there are still a &lt;a href=&quot;https://gist.github.com/stedolan/6115403&quot;&gt;couple of hundred&lt;/a&gt; global names without the &lt;code&gt;caml_&lt;/code&gt; prefix in the &lt;code&gt;otherlibs&lt;/code&gt; section of the standard library.&lt;/p&gt;
+
+&lt;h3&gt;Tools&lt;/h3&gt;
+
+&lt;p&gt;There was a little flurry of work on new command-line options for the standard toolchain.&lt;/p&gt;
+
+&lt;p&gt;A &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6102&quot;&gt;Mantis issue&lt;/a&gt; submitted by &lt;a href=&quot;http://gallium.inria.fr/%7Escherer/&quot;&gt;Gabriel Scherer&lt;/a&gt; suggests adding options to stop the compiler at certain stages, to better support tools such as &lt;a href=&quot;http://projects.camlcity.org/projects/findlib.html&quot;&gt;OCamlfind&lt;/a&gt; and to make it easier to debug the compiler itself.  The Ludlam / Harris team looked at this, and submitted a patch which provoked further thoughts from Gabriel.&lt;/p&gt;
+
+&lt;p&gt;Vincent looked at extending &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml/depend.html&quot;&gt;ocamldep&lt;/a&gt; with support for suffixes other than &lt;code&gt;.ml&lt;/code&gt; and &lt;code&gt;.mli&lt;/code&gt;.  Since &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=3725&quot;&gt;the issue&lt;/a&gt; was originally submitted, &lt;code&gt;ocamldep&lt;/code&gt; has acquired &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml/depend.html#sec288&quot;&gt;&lt;code&gt;-ml-synonym&lt;/code&gt; and &lt;code&gt;-mli-synonym&lt;/code&gt; options&lt;/a&gt; that serve this purpose, so Vincent looked at supporting other suffixes in the compiler, and submitted a patch as a &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6110&quot;&gt;new issue&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The OCaml top level has a simple feature for setting up the environment —  when it starts up it looks for the file &lt;code&gt;.ocamlinit&lt;/code&gt;, and executes its contents.  It&amp;#39;s sometimes useful to skip this stage and run the top level in a vanilla environment, so &lt;a href=&quot;https://github.com/dsheets&quot;&gt;David Sheets&lt;/a&gt; submitted a &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6071&quot;&gt;patch&lt;/a&gt; that adds a &lt;code&gt;-no-init&lt;/code&gt; option, &lt;a href=&quot;https://github.com/ocaml/ocaml/blob/fadcc73c50b89ca80ecc11131c9a23dbd2c1e67a/Changes#L35&quot;&gt;due for inclusion&lt;/a&gt; in the next release.&lt;/p&gt;
+
+&lt;h3&gt;Error-handling/reporting&lt;/h3&gt;
+
+&lt;p&gt;Error handling issues saw a good deal of activity.  &lt;a href=&quot;http://www.cl.cam.ac.uk/%7Erp452/&quot;&gt;Raphaël Proust&lt;/a&gt; submitted a patch to improve the &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6112&quot;&gt;reporting of error-enabled warnings&lt;/a&gt;; David investigated &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=3582&quot;&gt;handling out-of-range integer literals&lt;/a&gt; and &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=5350&quot;&gt;return-code checking of C functions in the runtime&lt;/a&gt;, leading to some discussions on Mantis.  Stephen submitted a patch to improve the &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6182&quot;&gt;diagnostics for misuses of &lt;code&gt;virtual&lt;/code&gt;&lt;/a&gt;.  &lt;a href=&quot;http://www.cl.cam.ac.uk/%7Egk338/&quot;&gt;Gabriel Kerneis&lt;/a&gt; and Wojciech looked at some &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6109&quot;&gt;typos in ocamlbuild error messages&lt;/a&gt;, and Mike opened an &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6108&quot;&gt;issue to clarify the appropriate use of the &lt;code&gt;compiler-libs&lt;/code&gt; package&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Language&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;open&lt;/code&gt; operation on modules can make it difficult for readers of a program to see where particular names are introduced, so its use is sometimes discouraged.  The basic feature of making names available without a module prefix is rather useful, though, so various new features (including &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual021.html#toc77&quot;&gt;local opens&lt;/a&gt;, &lt;a href=&quot;https://github.com/ocaml/ocaml/commit/f51bc04b55fbe22533f1075193dd3b2e52721f15&quot;&gt;warnings for shadowing&lt;/a&gt;, and &lt;a href=&quot;https://github.com/ocaml/ocaml/commit/a3b1c67fffd7de640ee9a0791f1fd0fad965b867&quot;&gt;explicit shadowing&lt;/a&gt;) have been introduced to tame its power. Stephen looked at adding a further feature, making it possible to open modules under a particular signature, so that &lt;code&gt;open M : S&lt;/code&gt; will introduce only those names in &lt;code&gt;M&lt;/code&gt; that are specified with &lt;code&gt;S&lt;/code&gt;.  There&amp;#39;s an &lt;a href=&quot;https://github.com/stedolan/ocaml/commits/compiler-hacking&quot;&gt;initial prototype&lt;/a&gt; already, and we&amp;#39;re looking forward to seeing the final results.&lt;/p&gt;
+
+&lt;p&gt;The second language feature of the evening was support for infix operators (such as the List constructor, &lt;code&gt;::&lt;/code&gt;) for user-defined types, a feature that is definitely not in any way motivated by envy of Haskell.  Mike&amp;#39;s &lt;a href=&quot;https://github.com/mcclurmc/ocaml/tree/infix-constructors&quot;&gt;prototype implementation&lt;/a&gt; is available, and there&amp;#39;s an &lt;a href=&quot;https://github.com/mcclurmc/ocaml/pull/1&quot;&gt;additional patch&lt;/a&gt; that brings it closer to completion.&lt;/p&gt;
+
+&lt;h3&gt;Next session&lt;/h3&gt;
+
+&lt;p&gt;The next session is planned for 6pm on Wednesday 18th September 2013 at
+&lt;a href=&quot;http://makespace.org/&quot;&gt;Makespace, Cambridge&lt;/a&gt;.  If you&amp;#39;re planning to come along it&amp;#39;d be
+helpful if you could add yourself to the &lt;a href=&quot;http://doodle.com/k6y2tiihkrb5vuw4&quot;&gt;Doodle Poll&lt;/a&gt;.  Hope to see
+you there!&lt;/p&gt;
+</content>
+  </entry>
+  
+ 
+</feed>
