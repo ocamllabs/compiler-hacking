@@ -1,0 +1,4 @@
+name: OCaml Labs compiler hacking
+markdown: redcarpet
+pygments: true
+permalink: /compiler-hacking/:categories/:year/:month/:day/:title.html

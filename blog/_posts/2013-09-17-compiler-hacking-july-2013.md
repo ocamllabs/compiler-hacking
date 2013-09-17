@@ -1,3 +1,9 @@
+---
+layout: post
+title:  Inaugural compiler hackers meeting
+date:   2013-09-17 11:49:04
+---
+
 The first OCaml Labs compiler hacking session brought together around twenty people from [OCaml Labs][ocamllabs], the wider [Computer Lab][computer-lab], and [various][citrix] [companies][arm] around Cambridge for an enjoyable few hours learning about and improving the OCaml compiler toolchain, fuelled by [pizza][cherry-box] and home-made ice cream (thanks, [Philippe][philippe]!).
 
 We benefited from the presence of a few [experienced][xclerc] [compiler][meyer] [hackers][leo], but for most of us it was the first attempt to modify the OCaml compiler internals.
@@ -30,7 +36,7 @@ Error handling issues saw a good deal of activity.  [Raphaël Proust][raphaël] 
 
 The `open` operation on modules can make it difficult for readers of a program to see where particular names are introduced, so its use is sometimes discouraged.  The basic feature of making names available without a module prefix is rather useful, though, so various new features (including [local opens][local-open], [warnings for shadowing][open-warnings], and [explicit shadowing][open-bang]) have been introduced to tame its power. Stephen looked at adding a further feature, making it possible to open modules under a particular signature, so that `open M : S` will introduce only those names in `M` that are specified with `S`.  There's an [initial prototype][open-sig-tree] already, and we're looking forward to seeing the final results.
 
-The second language feature of the evening was support for infix operators (such as the List constructor, `::`) for user-defined types, a feature that is definitely not in any way motivated by envy of Haskell.  Mike's [prototype implementation][https://github.com/mcclurmc/ocaml/tree/infix-constructors] is available, and there's an [additional patch][infix-pull-request] that brings it closer to completion.
+The second language feature of the evening was support for infix operators (such as the List constructor, `::`) for user-defined types, a feature that is definitely not in any way motivated by envy of Haskell.  Mike's [prototype implementation][infix-constructor-tree] is available, and there's an [additional patch][infix-pull-request] that brings it closer to completion.
 
 
 ### Next session
@@ -91,3 +97,4 @@ you there!
 [things-to-work-on]: https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on
 [no-init-changes]: https://github.com/ocaml/ocaml/blob/fadcc73c50b89ca80ecc11131c9a23dbd2c1e67a/Changes#L35
 [infix-pull-request]: https://github.com/mcclurmc/ocaml/pull/1
+[infix-constructor-tree]: https://github.com/mcclurmc/ocaml/tree/infix-constructors

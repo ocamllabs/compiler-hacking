@@ -1,0 +1,32 @@
+---
+layout: nil
+---
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+  <title>OCaml Labs compiler hacking</title>
+  <link href="http://ocamllabs.github.com/compiler-hacking/"/>
+  <link type="application/atom+xml" rel="self" href="http://ocamllabs.github.com/compiler-hacking/atom.xml"/>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>http://ocamllabs.github.com/compiler-hacking/</id>
+  <author>
+    <name>OCaml Labs</name>
+    <email>cl-ocamllabs@lists.cam.ac.uk</email>
+  </author>
+
+  {% for post in site.posts %}
+  <entry>
+    <id>http://ocamllabs.github.com/compiler-hacking{{ post.id }}</id>
+    <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking{{ post.url }}"/>
+    <title>{{ post.title }}</title>
+    <published>{{ post.date | date_to_xmlschema }}</published>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <author>
+      <name>OCaml Labs</name>
+      <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
+    </author>
+    <content type="html">{{ post.content | xml_escape }}</content>
+  </entry>
+  {% endfor %}
+ 
+</feed>
