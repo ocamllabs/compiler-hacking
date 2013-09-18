@@ -4,7 +4,7 @@ title:  Inaugural compiler hackers meeting
 date:   2013-09-17 11:49:04
 ---
 
-![Compiler Hacking](/commpiler-hacking/imgs/2013-09-17.jpg)
+![Compiler Hacking](/compiler-hacking/imgs/2013-09-17.jpg)
 
 The first OCaml Labs compiler hacking session brought together around twenty people from [OCaml Labs][ocamllabs], the wider [Computer Lab][computer-lab], and [various][citrix] [companies][arm] around Cambridge for an enjoyable few hours learning about and improving the OCaml compiler toolchain, fuelled by [pizza][cherry-box] and home-made ice cream (thanks, [Philippe][philippe]!).
 
