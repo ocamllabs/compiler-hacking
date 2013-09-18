@@ -4,7 +4,7 @@
   <title>OCaml Labs compiler hacking</title>
   <link href="http://ocamllabs.github.com/compiler-hacking/"/>
   <link type="application/atom+xml" rel="self" href="http://ocamllabs.github.com/compiler-hacking/atom.xml"/>
-  <updated>2013-09-18T12:20:03+01:00</updated>
+  <updated>2013-09-18T14:03:15+01:00</updated>
   <id>http://ocamllabs.github.com/compiler-hacking/</id>
   <author>
     <name>OCaml Labs</name>
@@ -22,7 +22,7 @@
       <name>OCaml Labs</name>
       <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
     </author>
-    <content type="html">&lt;p&gt;&lt;img src=&quot;/commpiler-hacking/imgs/2013-09-17.jpg&quot; alt=&quot;Compiler Hacking&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;img src=&quot;/compiler-hacking/imgs/2013-09-17.jpg&quot; alt=&quot;Compiler Hacking&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;The first OCaml Labs compiler hacking session brought together around twenty people from &lt;a href=&quot;http://www.cl.cam.ac.uk/projects/ocamllabs/&quot;&gt;OCaml Labs&lt;/a&gt;, the wider &lt;a href=&quot;http://www.cl.cam.ac.uk&quot;&gt;Computer Lab&lt;/a&gt;, and &lt;a href=&quot;http://www.citrix.com/&quot;&gt;various&lt;/a&gt; &lt;a href=&quot;http://www.arm.com/&quot;&gt;companies&lt;/a&gt; around Cambridge for an enjoyable few hours learning about and improving the OCaml compiler toolchain, fuelled by &lt;a href=&quot;http://www.cherryboxpizza.co.uk&quot;&gt;pizza&lt;/a&gt; and home-made ice cream (thanks, &lt;a href=&quot;http://philippewang.info/CL/&quot;&gt;Philippe&lt;/a&gt;!).&lt;/p&gt;
 
