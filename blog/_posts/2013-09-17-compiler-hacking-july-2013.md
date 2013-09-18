@@ -4,6 +4,8 @@ title:  Inaugural compiler hackers meeting
 date:   2013-09-17 11:49:04
 ---
 
+![Compiler Hacking](/commpiler-hacking/imgs/2013-09-17.jpg)
+
 The first OCaml Labs compiler hacking session brought together around twenty people from [OCaml Labs][ocamllabs], the wider [Computer Lab][computer-lab], and [various][citrix] [companies][arm] around Cambridge for an enjoyable few hours learning about and improving the OCaml compiler toolchain, fuelled by [pizza][cherry-box] and home-made ice cream (thanks, [Philippe][philippe]!).
 
 We benefited from the presence of a few [experienced][xclerc] [compiler][meyer] [hackers][leo], but for most of us it was the first attempt to modify the OCaml compiler internals.
@@ -67,7 +69,7 @@ you there!
 [citrix]: http://www.citrix.com/
 [ocamllabs]: http://www.cl.cam.ac.uk/projects/ocamllabs/
 [computer-lab]: http://www.cl.cam.ac.uk
-[open-sig-tree]: https://github.com/stedolan/ocaml/commits/compiler-hacking 
+[open-sig-tree]: https://github.com/lpw25/ocaml/tree/signatured-open
 [local-open]: http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual021.html#toc77
 [open-warnings]: https://github.com/ocaml/ocaml/commit/f51bc04b55fbe22533f1075193dd3b2e52721f15
 [open-bang]: https://github.com/ocaml/ocaml/commit/a3b1c67fffd7de640ee9a0791f1fd0fad965b867
