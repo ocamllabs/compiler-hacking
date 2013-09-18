@@ -4,7 +4,7 @@
   <title>OCaml Labs compiler hacking</title>
   <link href="http://ocamllabs.github.com/compiler-hacking/"/>
   <link type="application/atom+xml" rel="self" href="http://ocamllabs.github.com/compiler-hacking/atom.xml"/>
-  <updated>2013-09-17T13:09:12+01:00</updated>
+  <updated>2013-09-18T12:20:03+01:00</updated>
   <id>http://ocamllabs.github.com/compiler-hacking/</id>
   <author>
     <name>OCaml Labs</name>
@@ -22,7 +22,9 @@
       <name>OCaml Labs</name>
       <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
     </author>
-    <content type="html">&lt;p&gt;The first OCaml Labs compiler hacking session brought together around twenty people from &lt;a href=&quot;http://www.cl.cam.ac.uk/projects/ocamllabs/&quot;&gt;OCaml Labs&lt;/a&gt;, the wider &lt;a href=&quot;http://www.cl.cam.ac.uk&quot;&gt;Computer Lab&lt;/a&gt;, and &lt;a href=&quot;http://www.citrix.com/&quot;&gt;various&lt;/a&gt; &lt;a href=&quot;http://www.arm.com/&quot;&gt;companies&lt;/a&gt; around Cambridge for an enjoyable few hours learning about and improving the OCaml compiler toolchain, fuelled by &lt;a href=&quot;http://www.cherryboxpizza.co.uk&quot;&gt;pizza&lt;/a&gt; and home-made ice cream (thanks, &lt;a href=&quot;http://philippewang.info/CL/&quot;&gt;Philippe&lt;/a&gt;!).&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;img src=&quot;/commpiler-hacking/imgs/2013-09-17.jpg&quot; alt=&quot;Compiler Hacking&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;The first OCaml Labs compiler hacking session brought together around twenty people from &lt;a href=&quot;http://www.cl.cam.ac.uk/projects/ocamllabs/&quot;&gt;OCaml Labs&lt;/a&gt;, the wider &lt;a href=&quot;http://www.cl.cam.ac.uk&quot;&gt;Computer Lab&lt;/a&gt;, and &lt;a href=&quot;http://www.citrix.com/&quot;&gt;various&lt;/a&gt; &lt;a href=&quot;http://www.arm.com/&quot;&gt;companies&lt;/a&gt; around Cambridge for an enjoyable few hours learning about and improving the OCaml compiler toolchain, fuelled by &lt;a href=&quot;http://www.cherryboxpizza.co.uk&quot;&gt;pizza&lt;/a&gt; and home-made ice cream (thanks, &lt;a href=&quot;http://philippewang.info/CL/&quot;&gt;Philippe&lt;/a&gt;!).&lt;/p&gt;
 
 &lt;p&gt;We benefited from the presence of a few &lt;a href=&quot;http://www.x9c.fr/&quot;&gt;experienced&lt;/a&gt; &lt;a href=&quot;http://danmey.org/&quot;&gt;compiler&lt;/a&gt; &lt;a href=&quot;http://lpw25.net/&quot;&gt;hackers&lt;/a&gt;, but for most of us it was the first attempt to modify the OCaml compiler internals.&lt;/p&gt;
 
@@ -52,7 +54,7 @@
 
 &lt;h3&gt;Language&lt;/h3&gt;
 
-&lt;p&gt;The &lt;code&gt;open&lt;/code&gt; operation on modules can make it difficult for readers of a program to see where particular names are introduced, so its use is sometimes discouraged.  The basic feature of making names available without a module prefix is rather useful, though, so various new features (including &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual021.html#toc77&quot;&gt;local opens&lt;/a&gt;, &lt;a href=&quot;https://github.com/ocaml/ocaml/commit/f51bc04b55fbe22533f1075193dd3b2e52721f15&quot;&gt;warnings for shadowing&lt;/a&gt;, and &lt;a href=&quot;https://github.com/ocaml/ocaml/commit/a3b1c67fffd7de640ee9a0791f1fd0fad965b867&quot;&gt;explicit shadowing&lt;/a&gt;) have been introduced to tame its power. Stephen looked at adding a further feature, making it possible to open modules under a particular signature, so that &lt;code&gt;open M : S&lt;/code&gt; will introduce only those names in &lt;code&gt;M&lt;/code&gt; that are specified with &lt;code&gt;S&lt;/code&gt;.  There&amp;#39;s an &lt;a href=&quot;https://github.com/stedolan/ocaml/commits/compiler-hacking&quot;&gt;initial prototype&lt;/a&gt; already, and we&amp;#39;re looking forward to seeing the final results.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;open&lt;/code&gt; operation on modules can make it difficult for readers of a program to see where particular names are introduced, so its use is sometimes discouraged.  The basic feature of making names available without a module prefix is rather useful, though, so various new features (including &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual021.html#toc77&quot;&gt;local opens&lt;/a&gt;, &lt;a href=&quot;https://github.com/ocaml/ocaml/commit/f51bc04b55fbe22533f1075193dd3b2e52721f15&quot;&gt;warnings for shadowing&lt;/a&gt;, and &lt;a href=&quot;https://github.com/ocaml/ocaml/commit/a3b1c67fffd7de640ee9a0791f1fd0fad965b867&quot;&gt;explicit shadowing&lt;/a&gt;) have been introduced to tame its power. Stephen looked at adding a further feature, making it possible to open modules under a particular signature, so that &lt;code&gt;open M : S&lt;/code&gt; will introduce only those names in &lt;code&gt;M&lt;/code&gt; that are specified with &lt;code&gt;S&lt;/code&gt;.  There&amp;#39;s an &lt;a href=&quot;https://github.com/lpw25/ocaml/tree/signatured-open&quot;&gt;initial prototype&lt;/a&gt; already, and we&amp;#39;re looking forward to seeing the final results.&lt;/p&gt;
 
 &lt;p&gt;The second language feature of the evening was support for infix operators (such as the List constructor, &lt;code&gt;::&lt;/code&gt;) for user-defined types, a feature that is definitely not in any way motivated by envy of Haskell.  Mike&amp;#39;s &lt;a href=&quot;https://github.com/mcclurmc/ocaml/tree/infix-constructors&quot;&gt;prototype implementation&lt;/a&gt; is available, and there&amp;#39;s an &lt;a href=&quot;https://github.com/mcclurmc/ocaml/pull/1&quot;&gt;additional patch&lt;/a&gt; that brings it closer to completion.&lt;/p&gt;
 
