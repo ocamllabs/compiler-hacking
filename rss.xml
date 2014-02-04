@@ -6,8 +6,8 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Tue, 04 Feb 2014 16:18:14 +0000</pubDate>
-    <lastBuildDate>Tue, 04 Feb 2014 16:18:14 +0000</lastBuildDate>
+    <pubDate>Tue, 04 Feb 2014 18:25:02 +0000</pubDate>
+    <lastBuildDate>Tue, 04 Feb 2014 18:25:02 +0000</lastBuildDate>
 
     
     <item>
@@ -16,7 +16,7 @@
       <pubDate>Tue, 04 Feb 2014 16:05:05 +0000</pubDate>
       <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
       <guid>http://ocamllabs.github.com/compiler-hacking/2014/02/04/handler-case</guid>
-      <description>&lt;h3&gt;How to handle success&lt;/h3&gt;
+      <description>&lt;p&gt;(Update: there&amp;#39;s a &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6318&quot;&gt;Mantis issue open&lt;/a&gt; to discuss this proposal.)&lt;/p&gt;
 
 &lt;p&gt;OCaml&amp;#39;s &lt;code&gt;try&lt;/code&gt; construct is good at dealing with exceptions, but not so good at handling the case where no exception is raised.  This post describes a simple extension to &lt;code&gt;try&lt;/code&gt; that adds support for handling the &amp;quot;success&amp;quot; case.&lt;/p&gt;
 
@@ -98,8 +98,6 @@ $ eval `opam config env`
 
 &lt;p&gt;You can also try out the handler case construct in your browser, using the following modified version of &lt;a href=&quot;http://www.ocamlpro.com/&quot;&gt;OCamlPro&lt;/a&gt;&amp;#39;s &lt;a href=&quot;http://try.ocamlpro.com/&quot;&gt;Try OCaml&lt;/a&gt; application:&lt;/p&gt;
 
-&lt;p&gt;[TODO: embed the modified try ocaml console here.]&lt;/p&gt;
-
 &lt;h3&gt;The discoveries of success continuations&lt;/h3&gt;
 
 &lt;p&gt;As &lt;a href=&quot;http://homepages.inf.ed.ac.uk/wadler&quot;&gt;Philip Wadler&lt;/a&gt; &lt;a href=&quot;http://wadler.blogspot.co.uk/2008/02/great-minds-think-alike.html&quot;&gt;notes&lt;/a&gt;, constructs for handling success continuations have been independently discovered multiple times.  In fact, the history goes back even further than described in Wadler&amp;#39;s blog; constructs like handler case date back over thirty years and have been introduced, apparently independently, into at least four languages.  Curiously, all the languages use &lt;code&gt;let&lt;/code&gt;-binding for success continuations and &lt;code&gt;match&lt;/code&gt; binding for failure continuations.&lt;/p&gt;
@@ -145,7 +143,7 @@ summary:     Bring alpha100 revision back to mainline
       &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The provenance of the &lt;code&gt;else&lt;/code&gt; clause is unclear, but there is no reason to think that it derives from Lisp&amp;#39;s &lt;code&gt;handler-case&lt;/code&gt;.  The design of Python&amp;#39;s exception handling constructs &lt;a href=&quot;http://docs.python.org/3/faq/general.html#why-was-python-created-in-the-first-place&quot;&gt;comes from Modula-3&lt;/a&gt;, but the exception handling construct described in the &lt;a href=&quot;http://www.hpl.hp.com/techreports/Compaq-DEC/SRC-RR-52.pdf&quot;&gt;Modula-3 report&lt;/a&gt; does not include a way of specifying the success continuation.  The syntax of the Modula-3 &lt;code&gt;TRY&lt;/code&gt;/&lt;code&gt;EXCEPT&lt;/code&gt; statement (found on p21 of the report) does include an &lt;code&gt;ELSE&lt;/code&gt; clause:&lt;/p&gt;
+&lt;p&gt;The provenance of the &lt;code&gt;else&lt;/code&gt; clause is unclear, but it doesn&amp;#39;t seem to derive from Lisp&amp;#39;s &lt;code&gt;handler-case&lt;/code&gt;.  The design of Python&amp;#39;s exception handling constructs &lt;a href=&quot;http://docs.python.org/3/faq/general.html#why-was-python-created-in-the-first-place&quot;&gt;comes from Modula-3&lt;/a&gt;, but the exception handling construct described in the &lt;a href=&quot;http://www.hpl.hp.com/techreports/Compaq-DEC/SRC-RR-52.pdf&quot;&gt;Modula-3 report&lt;/a&gt; does not include a way of specifying the success continuation.  The syntax of the Modula-3 &lt;code&gt;TRY&lt;/code&gt;/&lt;code&gt;EXCEPT&lt;/code&gt; statement (found on p21 of the report) does include an &lt;code&gt;ELSE&lt;/code&gt; clause:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;   TRY    
      Body
    EXCEPT
@@ -159,7 +157,7 @@ summary:     Bring alpha100 revision back to mainline
 
 &lt;p&gt;Python also adds success handlers to other constructs.  Both the &lt;a href=&quot;http://docs.python.org/2/reference/compound_stmts.html#the-for-statement&quot;&gt;&lt;code&gt;for&lt;/code&gt;&lt;/a&gt; and the &lt;a href=&quot;http://docs.python.org/2/reference/compound_stmts.html#the-while-statement&quot;&gt;&lt;code&gt;while&lt;/code&gt;&lt;/a&gt; statements have an optional &lt;code&gt;else&lt;/code&gt; clause which is executed unless the loop terminates prematurely with an exception or &lt;code&gt;break&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a name=&quot;exceptional-syntax&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;exceptional-syntax&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4&gt;Exceptional Syntax&lt;/h4&gt;
 
@@ -224,7 +222,7 @@ summary:     Bring alpha100 revision back to mainline
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The details of the implementation are discussed in &lt;a href=&quot;https://twitter.com/jakedonham&quot;&gt;Jake Donham&lt;/a&gt;&amp;#39;s &lt;a href=&quot;http://ambassadortothecomputers.blogspot.co.uk/2010/09/reading-camlp4-part-11-syntax.html&quot;&gt;articles on Camlp4&lt;/a&gt;.  The micmatch implementation has a novel feature: the &lt;code&gt;let&lt;/code&gt; binding associated with the success continuation may be made recursive.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://alain.frisch.fr/&quot;&gt;Alain Frisch&lt;/a&gt; proposed and implemented a more powerful extension to OCaml, &lt;a href=&quot;http://www.lexifi.com/blog/static-exceptions&quot;&gt;Static Exceptions&lt;/a&gt;, which allow transfer of control to lexically-visible handlers (along the lines of Common Lisp&amp;#39;s &lt;a href=&quot;http://clhs.lisp.se/Body/s_block.htm#block&quot;&gt;&lt;code&gt;block&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;http://clhs.lisp.se/Body/s_ret_fr.htm#return-from&quot;&gt;&lt;code&gt;return-from&lt;/code&gt;&lt;/a&gt;).  Static exceptions are based on an equivalent feature in OCaml&amp;#39;s intermediate language.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://alain.frisch.fr/&quot;&gt;Alain Frisch&lt;/a&gt; has proposed and implemented a more powerful extension to OCaml, &lt;a href=&quot;http://www.lexifi.com/blog/static-exceptions&quot;&gt;Static Exceptions&lt;/a&gt;, which allow transfer of control to lexically-visible handlers (along the lines of Common Lisp&amp;#39;s &lt;a href=&quot;http://clhs.lisp.se/Body/s_block.htm#block&quot;&gt;&lt;code&gt;block&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;http://clhs.lisp.se/Body/s_ret_fr.htm#return-from&quot;&gt;&lt;code&gt;return-from&lt;/code&gt;&lt;/a&gt;).  Static exceptions are based on an equivalent feature in OCaml&amp;#39;s intermediate language.&lt;/p&gt;
 
 &lt;p&gt;There is a straightforward translation from OCaml extended with handler case into OCaml extended with static exceptions by wrapping the body of each &lt;code&gt;try&lt;/code&gt; expression in &lt;code&gt;raise (`Val (...))&lt;/code&gt;, and changing the &lt;code&gt;val&lt;/code&gt; keyword in the binding section to &lt;code&gt;`Val&lt;/code&gt;.  For example, &lt;code&gt;iter_stream&lt;/code&gt; can be written using static exceptions as follows:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
