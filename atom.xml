@@ -4,13 +4,268 @@
   <title>OCaml Labs compiler hacking</title>
   <link href="http://ocamllabs.github.com/compiler-hacking/"/>
   <link type="application/atom+xml" rel="self" href="http://ocamllabs.github.com/compiler-hacking/atom.xml"/>
-  <updated>2013-10-30T11:36:52+00:00</updated>
+  <updated>2014-02-04T16:18:14+00:00</updated>
   <id>http://ocamllabs.github.com/compiler-hacking/</id>
   <author>
     <name>OCaml Labs</name>
     <email>cl-ocamllabs@lists.cam.ac.uk</email>
   </author>
 
+  
+  <entry>
+    <id>http://ocamllabs.github.com/compiler-hacking/2014/02/04/handler-case</id>
+    <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/2014/02/04/handler-case.html"/>
+    <title>How to handle success</title>
+    <published>2014-02-04T16:05:05+00:00</published>
+    <updated>2014-02-04T16:05:05+00:00</updated>
+    <author>
+      <name>OCaml Labs</name>
+      <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
+    </author>
+    <content type="html">&lt;h3&gt;How to handle success&lt;/h3&gt;
+
+&lt;p&gt;OCaml&amp;#39;s &lt;code&gt;try&lt;/code&gt; construct is good at dealing with exceptions, but not so good at handling the case where no exception is raised.  This post describes a simple extension to &lt;code&gt;try&lt;/code&gt; that adds support for handling the &amp;quot;success&amp;quot; case.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s an example of code that benefits from the extension.  On a recent &lt;a href=&quot;http://caml.inria.fr/resources/forums.en.html&quot;&gt;caml-list&lt;/a&gt; thread, &lt;a href=&quot;http://cedeela.fr/%7Esimon/&quot;&gt;Simon Cruanes&lt;/a&gt; posted &lt;a href=&quot;https://sympa.inria.fr/sympa/arc/caml-list/2014-01/msg00113.html&quot;&gt;the following function&lt;/a&gt; for iterating over a stream:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Some&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;MyStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;End_of_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;None&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Some&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;For each element of a stream, &lt;code&gt;iter_stream&lt;/code&gt; wraps the element with &lt;code&gt;Some&lt;/code&gt;, then unwraps it again and passes it to &lt;code&gt;f&lt;/code&gt;.  At first glance, wrapping and immediately unwrapping in this way seems like needless obfuscation.  However, moving the last two lines out of the body of the &lt;code&gt;try&lt;/code&gt; in this way serves two essential purposes: it turns the recursive call to &lt;code&gt;iter_stream&lt;/code&gt; into a tail call, and it allows exceptions raised by &lt;code&gt;f&lt;/code&gt; to propagate.  More generally, this use of options makes it easy to specify the &lt;em&gt;success continuation&lt;/em&gt; of a &lt;code&gt;try&lt;/code&gt; expression, i.e. the piece of code that receives the value of the body when no exception is raised.&lt;/p&gt;
+
+&lt;p&gt;As Simon notes, the &lt;code&gt;match (try Some ...)&lt;/code&gt; idiom is widely used in OCaml code.  Examples can be found in the source of &lt;a href=&quot;https://github.com/ocsigen/lwt/blob/b63b2a/src/unix/lwt_unix.ml#L118-L125&quot;&gt;lwt&lt;/a&gt;, &lt;a href=&quot;https://github.com/ocaml-batteries-team/batteries-included/blob/92ea390c/benchsuite/bench_nreplace.ml#L45-L48&quot;&gt;batteries&lt;/a&gt;, &lt;a href=&quot;https://github.com/savonet/liquidsoap/blob/a81cd8b6/src/decoder/metadata_decoder.ml#L53-L55&quot;&gt;liquidsoap&lt;/a&gt;, &lt;a href=&quot;https://github.com/janestreet/sexplib/blob/f9bd413/lib/conv.ml#L256-L259&quot;&gt;sexplib&lt;/a&gt;, &lt;a href=&quot;https://github.com/MLstate/opalang/blob/0802728/compiler/opalang/opaParser.ml#L127-L135&quot;&gt;opa&lt;/a&gt;, &lt;a href=&quot;https://github.com/avsm/ocaml-uri/blob/35af64db/lib/uri.ml#L250-L255&quot;&gt;uri&lt;/a&gt;, &lt;a href=&quot;https://github.com/coq/coq/blob/724c9c9f/tools/coqdoc/tokens.ml#L36-L41&quot;&gt;coq&lt;/a&gt;, &lt;a href=&quot;https://github.com/pascal-bach/Unison/blob/4788644/src/ubase/prefs.ml#L97-L106&quot;&gt;unison&lt;/a&gt;, and many other packages.  &lt;/p&gt;
+
+&lt;p&gt;In response to Simon&amp;#39;s message, &lt;a href=&quot;http://okmij.org/ftp&quot;&gt;Oleg&lt;/a&gt; pointed out &lt;a href=&quot;https://sympa.inria.fr/sympa/arc/caml-list/2014-01/msg00146.html&quot;&gt;a solution&lt;/a&gt;: the 2001 paper &lt;a href=&quot;http://research.microsoft.com/%7Eakenn/sml/exceptionalsyntax.pdf&quot;&gt;Exceptional Syntax&lt;/a&gt;  (&lt;a href=&quot;http://research.microsoft.com/%7Enick/&quot;&gt;Benton&lt;/a&gt; and &lt;a href=&quot;http://research.microsoft.com/%7Eakenn/&quot;&gt;Kennedy&lt;/a&gt;) extends &lt;code&gt;try&lt;/code&gt; with a &lt;code&gt;let&lt;/code&gt;-like binding construct that supports the success continuation idiom directly without the need for the option value.&lt;/p&gt;
+
+&lt;!-- Perhaps expand on Exceptional Syntax. --&gt;
+
+&lt;p&gt;This post describes a patch to OCaml that implements a variant of Benton and Kennedy&amp;#39;s design called &lt;em&gt;handler case&lt;/em&gt;.  Like Exceptional Syntax, handler case extends &lt;code&gt;try&lt;/code&gt; with explicit success continuation handling.  However, unlike Exceptional syntax, handler case uses &lt;code&gt;match&lt;/code&gt; binding for both the success continuation and the exception-handling clauses.  Here&amp;#39;s the extended &lt;code&gt;try&lt;/code&gt; syntax:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_1&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_n&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_1&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_1&amp;#39;&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_n&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_n&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As in &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/expr.html#@manual.kwd50&quot;&gt;current OCaml&lt;/a&gt;, the clauses &lt;code&gt;pattern_1 -&amp;gt; expr_1&lt;/code&gt; ... &lt;code&gt;pattern_n -&amp;gt; expr_n&lt;/code&gt; handle exceptions raised during the evaluation of &lt;code&gt;expr&lt;/code&gt;.  The clauses  &lt;code&gt;val pattern_1&amp;#39; -&amp;gt; expr_1&amp;#39;&lt;/code&gt; ... &lt;code&gt;val pattern_n&amp;#39; -&amp;gt; expr_n&amp;#39;&lt;/code&gt; handle the case where no exception is raised; in this case the value of &lt;code&gt;expr&lt;/code&gt; is matched against &lt;code&gt;pattern_1&amp;#39;&lt;/code&gt; ... &lt;code&gt;pattern_n&amp;#39;&lt;/code&gt; to select the expression to evaluate to produce the result value.  (The actual syntax is implemented slightly more permissively: it allows value-matching and exception-matching clauses to be freely interleaved.)&lt;/p&gt;
+
+&lt;p&gt;Using handler case we can rewrite &lt;code&gt;iter_stream&lt;/code&gt; to remove the extraneous option value:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;MyStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;End_of_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt;
+     &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                      &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We don&amp;#39;t need to look far to find other code that benefits from the new construct.  Here&amp;#39;s a function from the &lt;a href=&quot;https://github.com/ocaml/ocaml/blob/6a296a02/otherlibs/num/big_int.ml#L323-L328&quot;&gt;Big_int&lt;/a&gt; module in the standard library: &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_of_big_int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_of_nat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;abs_value&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sign&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Failure&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq_big_int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bi&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monster_big_int&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monster_int&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;failwith&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;int_of_big_int&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The core of the function --- the call to &lt;code&gt;int_of_nat&lt;/code&gt; --- is rather buried in the complex control flow.  There are two &lt;code&gt;if&lt;/code&gt;-&lt;code&gt;then&lt;/code&gt;-&lt;code&gt;else&lt;/code&gt; constructs, a &lt;code&gt;let&lt;/code&gt; binding, and a &lt;code&gt;try&lt;/code&gt; expression with a complex body.  Using handler case we can disentangle the code to make the four possible outcomes from the call to &lt;code&gt;int_of_nat&lt;/code&gt; explicit:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_of_big_int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_of_nat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;abs_value&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sign&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+     &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Failure&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq_big_int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bi&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;monster_big_int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;monster_int&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Failure&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;failwith&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;int_of_big_int&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here&amp;#39;s a simpler example from &lt;a href=&quot;https://github.com/ocaml/ocaml/blob/6a296a02/stdlib/string.ml#L195&quot;&gt;the String module&lt;/a&gt;, which also involves code that cannot raise an exception in the body of a &lt;code&gt;try&lt;/code&gt; block:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ignore&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Not_found&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Using handler case we can separate the code that may raise an exception (the call to &lt;code&gt;index_rec&lt;/code&gt;) from the expression that produces the result:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index_rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Not_found&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Trying it out&lt;/h3&gt;
+
+&lt;p&gt;Using &lt;a href=&quot;http://opam.ocaml.org/&quot;&gt;opam&lt;/a&gt; you can install an OCaml compiler extended with handler case as follows:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;$ opam remote add ocamllabs git@github.com:ocamllabs/opam-repo-dev.git
+ocamllabs Fetching git@github.com:ocamllabs/opam-repo-dev.git
+[...]
+$ opam switch 4.02.0dev+handler-syntax
+# To complete the configuration of OPAM, you need to run:
+eval `opam config env`
+$ eval `opam config env`
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;js&lt;em&gt;of&lt;/em&gt;ocaml&lt;/h4&gt;
+
+&lt;p&gt;You can also try out the handler case construct in your browser, using the following modified version of &lt;a href=&quot;http://www.ocamlpro.com/&quot;&gt;OCamlPro&lt;/a&gt;&amp;#39;s &lt;a href=&quot;http://try.ocamlpro.com/&quot;&gt;Try OCaml&lt;/a&gt; application:&lt;/p&gt;
+
+&lt;p&gt;[TODO: embed the modified try ocaml console here.]&lt;/p&gt;
+
+&lt;h3&gt;The discoveries of success continuations&lt;/h3&gt;
+
+&lt;p&gt;As &lt;a href=&quot;http://homepages.inf.ed.ac.uk/wadler&quot;&gt;Philip Wadler&lt;/a&gt; &lt;a href=&quot;http://wadler.blogspot.co.uk/2008/02/great-minds-think-alike.html&quot;&gt;notes&lt;/a&gt;, constructs for handling success continuations have been independently discovered multiple times.  In fact, the history goes back even further than described in Wadler&amp;#39;s blog; constructs like handler case date back over thirty years and have been introduced, apparently independently, into at least four languages.  Curiously, all the languages use &lt;code&gt;let&lt;/code&gt;-binding for success continuations and &lt;code&gt;match&lt;/code&gt; binding for failure continuations.&lt;/p&gt;
+
+&lt;h4&gt;Lisp&lt;/h4&gt;
+
+&lt;p&gt;In &lt;a href=&quot;http://www.lispworks.com/documentation/HyperSpec/Front/&quot;&gt;Common Lisp&lt;/a&gt; the construct analogous to &lt;code&gt;try&lt;/code&gt; is &lt;a href=&quot;http://clhs.lisp.se/Body/m_hand_1.htm&quot;&gt;&lt;code&gt;handler-case&lt;/code&gt;&lt;/a&gt; (from which the construct discussed here borrows its name).  A &lt;code&gt;handler-case&lt;/code&gt; expression has a body and a sequence of clauses which specify how various conditions (exceptions) should be handled.  The special condition specification &lt;code&gt;:no-error&lt;/code&gt; specifies the code to run when no condition is signalled.  The &lt;code&gt;iter_stream&lt;/code&gt; function might be written as follows in Common Lisp:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;common-lisp language-common-lisp&quot; data-lang=&quot;common-lisp&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;defun&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;iter-stream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;handler-case&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;get-stream&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;end-of-stream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:no-error&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;|s&amp;#39;|&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+         &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;funcall&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+         &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;iter-stream&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;|s&amp;#39;|&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The Common Lisp specification was completed in 1994 but the &lt;code&gt;handler-case&lt;/code&gt; construct and its &lt;code&gt;:no-error&lt;/code&gt; clause were present in some of Common Lisp&amp;#39;s progenitors.  The construct was apparently introduced to Symbolics Lisp some time around 1982: it appears in the &lt;a href=&quot;http://bitsavers.informatik.uni-stuttgart.de/pdf/mit/cadr/chinual_5thEd_Jan83/chinualJan83_27_Errors.pdf&quot;&gt;5th edition&lt;/a&gt; of the Lisp Machine manual (January 1983) but not the &lt;a href=&quot;http://bitsavers.trailing-edge.com/pdf/mit/cadr/chinual_4thEd_Jul81.pdf&quot;&gt;4th edition&lt;/a&gt; from 18 months earlier (July 1981).&lt;/p&gt;
+
+&lt;h4&gt;Python&lt;/h4&gt;
+
+&lt;p&gt;Python has supported success continuations in exception handlers since May 1994, when the &lt;code&gt;else&lt;/code&gt; clause was added to &lt;code&gt;try&lt;/code&gt; blocks.  The &lt;a href=&quot;http://hg.python.org/cpython/file/36214c861144/Grammar/Grammar#l9&quot;&gt;Changelog in old versions of the Grammar/Grammar file&lt;/a&gt; has an entry&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;# 3-May-94:
+#Added else clause to try-except
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;introduced in a &lt;a href=&quot;http://hg.python.org/cpython/rev/6c0e11b94009&quot;&gt;commit from August 1994&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;changeset:   1744:6c0e11b94009
+branch:      legacy-trunk
+user:        Guido van Rossum &amp;lt;guido@python.org&amp;gt;
+date:        Mon Aug 01 11:00:20 1994 +0000
+summary:     Bring alpha100 revision back to mainline
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Unlike the &lt;code&gt;:no-error&lt;/code&gt; clause in Lisp&amp;#39;s &lt;code&gt;handler-case&lt;/code&gt;, Python&amp;#39;s &lt;code&gt;else&lt;/code&gt; clause doesn&amp;#39;t bind variables.  Since Python variables have function scope, not block scope, bindings in the body of the try block are visible throughout the function.  In Python we might write &lt;code&gt;iter_stream&lt;/code&gt; as follows:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iter_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MyStream&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;End_of_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The provenance of the &lt;code&gt;else&lt;/code&gt; clause is unclear, but there is no reason to think that it derives from Lisp&amp;#39;s &lt;code&gt;handler-case&lt;/code&gt;.  The design of Python&amp;#39;s exception handling constructs &lt;a href=&quot;http://docs.python.org/3/faq/general.html#why-was-python-created-in-the-first-place&quot;&gt;comes from Modula-3&lt;/a&gt;, but the exception handling construct described in the &lt;a href=&quot;http://www.hpl.hp.com/techreports/Compaq-DEC/SRC-RR-52.pdf&quot;&gt;Modula-3 report&lt;/a&gt; does not include a way of specifying the success continuation.  The syntax of the Modula-3 &lt;code&gt;TRY&lt;/code&gt;/&lt;code&gt;EXCEPT&lt;/code&gt; statement (found on p21 of the report) does include an &lt;code&gt;ELSE&lt;/code&gt; clause:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;   TRY    
+     Body
+   EXCEPT
+     id1 (v1) =&amp;gt; Handler1
+   | ...
+   | idn (vn) =&amp;gt; Handlern
+   ELSE Handler0
+   END
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;However, whereas Python&amp;#39;s &lt;code&gt;else&lt;/code&gt; handles the case where no exception is raised, Modula-3&amp;#39;s &lt;code&gt;ELSE&lt;/code&gt; handles the case where an exception not named in one of the &lt;code&gt;EXCEPT&lt;/code&gt; clauses is raised: it is equivalent to Python&amp;#39;s catch-all &lt;code&gt;except:&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Python also adds success handlers to other constructs.  Both the &lt;a href=&quot;http://docs.python.org/2/reference/compound_stmts.html#the-for-statement&quot;&gt;&lt;code&gt;for&lt;/code&gt;&lt;/a&gt; and the &lt;a href=&quot;http://docs.python.org/2/reference/compound_stmts.html#the-while-statement&quot;&gt;&lt;code&gt;while&lt;/code&gt;&lt;/a&gt; statements have an optional &lt;code&gt;else&lt;/code&gt; clause which is executed unless the loop terminates prematurely with an exception or &lt;code&gt;break&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;exceptional-syntax&quot;/&gt;&lt;/p&gt;
+
+&lt;h4&gt;Exceptional Syntax&lt;/h4&gt;
+
+&lt;p&gt;The 2001 paper &lt;a href=&quot;http://research.microsoft.com/%7Eakenn/sml/exceptionalsyntax.pdf&quot;&gt;Exceptional Syntax&lt;/a&gt; (&lt;a href=&quot;http://research.microsoft.com/%7Enick/&quot;&gt;Benton&lt;/a&gt; and &lt;a href=&quot;http://research.microsoft.com/%7Eakenn/&quot;&gt;Kennedy&lt;/a&gt;) proposed the following construct for handling exceptions in Standard ML:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_1&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_n&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;unless&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pattern_1&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_1&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_n&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_n&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Evaluation of the &lt;code&gt;let&lt;/code&gt; binding proceeds as normal, except that if any of &lt;code&gt;expr_1&lt;/code&gt; to &lt;code&gt;expr_n&lt;/code&gt; raises an exception, control is transferred to the right hand side of the first of the clauses after &lt;code&gt;unless&lt;/code&gt; whose left hand side matches the exception.  The construct is largely similar to our proposed variation, except that the bindings used in the success continuation are based on &lt;code&gt;let&lt;/code&gt;, so scrutinising the values requires a separate &lt;code&gt;case&lt;/code&gt; (i.e. &lt;code&gt;match&lt;/code&gt;) expression.&lt;/p&gt;
+
+&lt;p&gt;Using the Exceptional Syntax construct we might write &lt;code&gt;iter_stream&lt;/code&gt; as follows:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;MyStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;End_of_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Exceptional Syntax has been implemented in the SML-to-Java compiler &lt;a href=&quot;http://www.dcs.ed.ac.uk/home/mlj/&quot;&gt;MLj&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Erlang&lt;/h4&gt;
+
+&lt;p&gt;The 2004 paper &lt;a href=&quot;http://erlang.se/workshop/2004/exception.pdf&quot;&gt;Erlang&amp;#39;s Exception Handling Revisited&lt;/a&gt; (Richard Carlsson, Björn Gustavsson and Patrik Nyblom) proposed an exception-handling construct for Erlang along the same lines as exceptional syntax, although apparently developed independently.  In the proposed extension to Erlang we might write &lt;code&gt;iter_stream&lt;/code&gt; as follows:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erlang language-erlang&quot; data-lang=&quot;erlang&quot;&gt;&lt;span class=&quot;nf&quot;&gt;iter_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Mystream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;of&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;S_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;S_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;End_of_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;Eff&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://homepages.inf.ed.ac.uk/gdp/&quot;&gt;Plotkin&lt;/a&gt; and &lt;a href=&quot;http://matija.pretnar.info/&quot;&gt;Pretnar&lt;/a&gt;&amp;#39;s work on &lt;a href=&quot;http://matija.pretnar.info/pdf/handling-algebraic-effects.pdf&quot;&gt;handlers for algebraic effects&lt;/a&gt; generalises Exceptional Syntax to support effects other than exceptions.  The programming language &lt;a href=&quot;http://math.andrej.com/eff/&quot;&gt;eff&lt;/a&gt; implements a design based on this work, and supports Exceptional Syntax, again with &lt;code&gt;let&lt;/code&gt; binding for the success continuation.  (Although the success continuation is incorporated into the exception matching construct, only a single success continuation pattern is allowed.)  In eff we might write &lt;code&gt;iter_stream&lt;/code&gt; as follows:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;handle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_stream_get&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end_of_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt;
+     &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                      &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The second argument in the &lt;code&gt;end_of_stream&lt;/code&gt; clauses binds the continuation of the effect, allowing handling strategies other than the usual stack unwinding.  Since we ignore the continuation argument the behaviour is the same as for a regular exception handler.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://github.com/matijapretnar/eff/blob/2a9a36cc/src/parser.mly#L4-L7&quot;&gt;eff implementation&lt;/a&gt; uses the term &amp;quot;handler case&amp;quot; for the clauses of the &lt;code&gt;handle&lt;/code&gt; construct.&lt;/p&gt;
+
+&lt;h4&gt;OCaml&lt;/h4&gt;
+
+&lt;p&gt;Several OCaml programmers have proposed or implemented constructs related to handler case.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mjambon.com/&quot;&gt;Martin Jambon&lt;/a&gt; has &lt;a href=&quot;http://mjambon.com/mikmatch-manual.html#htoc16&quot;&gt;implemented&lt;/a&gt; a construct equivalent to Exceptional Syntax for OCaml as part of the &lt;a href=&quot;http://mjambon.com/micmatch.html&quot;&gt;micmatch extension&lt;/a&gt;.  His implementation allows us to write &lt;code&gt;iter_stream&lt;/code&gt; in much the same way as Benton and Kennedy&amp;#39;s proposal:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_stream_get&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;End_of_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The details of the implementation are discussed in &lt;a href=&quot;https://twitter.com/jakedonham&quot;&gt;Jake Donham&lt;/a&gt;&amp;#39;s &lt;a href=&quot;http://ambassadortothecomputers.blogspot.co.uk/2010/09/reading-camlp4-part-11-syntax.html&quot;&gt;articles on Camlp4&lt;/a&gt;.  The micmatch implementation has a novel feature: the &lt;code&gt;let&lt;/code&gt; binding associated with the success continuation may be made recursive.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://alain.frisch.fr/&quot;&gt;Alain Frisch&lt;/a&gt; proposed and implemented a more powerful extension to OCaml, &lt;a href=&quot;http://www.lexifi.com/blog/static-exceptions&quot;&gt;Static Exceptions&lt;/a&gt;, which allow transfer of control to lexically-visible handlers (along the lines of Common Lisp&amp;#39;s &lt;a href=&quot;http://clhs.lisp.se/Body/s_block.htm#block&quot;&gt;&lt;code&gt;block&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;http://clhs.lisp.se/Body/s_ret_fr.htm#return-from&quot;&gt;&lt;code&gt;return-from&lt;/code&gt;&lt;/a&gt;).  Static exceptions are based on an equivalent feature in OCaml&amp;#39;s intermediate language.&lt;/p&gt;
+
+&lt;p&gt;There is a straightforward translation from OCaml extended with handler case into OCaml extended with static exceptions by wrapping the body of each &lt;code&gt;try&lt;/code&gt; expression in &lt;code&gt;raise (`Val (...))&lt;/code&gt;, and changing the &lt;code&gt;val&lt;/code&gt; keyword in the binding section to &lt;code&gt;`Val&lt;/code&gt;.  For example, &lt;code&gt;iter_stream&lt;/code&gt; can be written using static exceptions as follows:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(`&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;MyStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;End_of_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt;
+     &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                       &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Of course, static exceptions allow many other programs to be expressed that are not readily expressible using handler case.&lt;/p&gt;
+
+&lt;p&gt;Finally, I discovered while writing this article that Christophe Raffalli proposed the handler case design fifteen years ago in a &lt;a href=&quot;http://caml.inria.fr/pub/ml-archives/caml-list/1999/12/a6d3ce9671b16a33530035c2b42df011.en.html&quot;&gt;message to caml-list&lt;/a&gt;!  Christophe&amp;#39;s proposal wasn&amp;#39;t picked up back then, but perhaps the time has now come to give OCaml programmers a way to handle success.&lt;/p&gt;
+
+&lt;h3&gt;Postscript: a symmetric extension&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;try&lt;/code&gt; construct in current OCaml supports matching against raised exceptions but not against the value produced when no exception is raised.  Contrariwise, the &lt;code&gt;match&lt;/code&gt; construct supports matching against the value produced when no exception is raised, but does not support matching against raised exceptions.  As implemented, the patch addresses this asymmetry, extending &lt;code&gt;match&lt;/code&gt; with clauses that specify the &amp;quot;failure continuation&amp;quot;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_1&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_n&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_1&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_1&amp;#39;&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern_n&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expr_n&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With this additional extension the choice between &lt;code&gt;match&lt;/code&gt; and &lt;code&gt;try&lt;/code&gt; becomes purely stylistic.  We might optimise for succinctness, and use &lt;code&gt;try&lt;/code&gt; in the case where exceptions are expected (for example, where they&amp;#39;re used for control flow), reserving &lt;code&gt;match&lt;/code&gt; for the case where exceptions are truly exceptional.&lt;/p&gt;
+
+&lt;p&gt;For the sake of completeness, here&amp;#39;s &lt;code&gt;iter_stream&lt;/code&gt; written with the extended &lt;code&gt;match&lt;/code&gt; construct:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;MyStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt;
+     &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;exception&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;End_of_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Since both &lt;code&gt;val&lt;/code&gt; and &lt;code&gt;exception&lt;/code&gt; are existing keywords, the extensions to both &lt;code&gt;try&lt;/code&gt; and &lt;code&gt;match&lt;/code&gt; are fully backwards compatible. &lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://ocamllabs.github.com/compiler-hacking/2013/10/30/third-compiler-hacking-session</id>
@@ -22,21 +277,21 @@
       <name>OCaml Labs</name>
       <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
     </author>
-    <content type="html">&lt;p&gt;It&amp;#39;s time for the third Cambridge OCaml compiler-hacking session!  This time we&amp;#39;re going to be back in the &lt;a href=&quot;http://www.cl.cam.ac.uk/&quot;&gt;Computer Lab&lt;/a&gt;, where the first session was held.&lt;/p&gt;
+    <content type="html">&lt;p&gt;It&amp;#39;s time for the third Cambridge OCaml compiler-hacking session! This time we&amp;#39;re going to be back in the &lt;a href=&quot;http://www.cl.cam.ac.uk/&quot;&gt;Computer Lab&lt;/a&gt;, where the first session was held.&lt;/p&gt;
 
-&lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/czzp7ik4r72npz6p&quot;&gt;&lt;strong&gt;indicate interest via Doodle&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;&lt;strong&gt;sign up to the mailing list&lt;/strong&gt;&lt;/a&gt; to receive updates:&lt;/p&gt;
+&lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/czzp7ik4r72npz6p&quot;&gt;&lt;em&gt;indicate interest via Doodle&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;&lt;em&gt;sign up to the mailing list&lt;/em&gt;&lt;/a&gt; to receive updates:&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Where&lt;/strong&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;When&lt;/strong&gt;: 6pm, Wednesday 6th November&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;When&lt;/em&gt;: 6pm, Wednesday 6th November&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Who&lt;/strong&gt;: anyone interested in improving OCaml.  Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Who&lt;/em&gt;: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;What&lt;/strong&gt;: fixing bugs, implementing new features, learning about OCaml internals&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;What&lt;/em&gt;: fixing bugs, implementing new features, learning about OCaml internals&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Wiki&lt;/strong&gt;: &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki&quot;&gt;https://github.com/ocamllabs/compiler-hacking/wiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Wiki&lt;/em&gt;: &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki&quot;&gt;https://github.com/ocamllabs/compiler-hacking/wiki&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/libref/index.html&quot;&gt;standard library&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual024.html&quot;&gt;runtime&lt;/a&gt;, tools (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/depend.html&quot;&gt;ocamldep&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc105&quot;&gt;ocamllex&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc107&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-camlp4/manual002.html&quot;&gt;camlp4&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual032.html&quot;&gt;ocamlbuild&lt;/a&gt;, the &lt;a href=&quot;http://caml.inria.fr/resources/doc/index.en.html&quot;&gt;documentation&lt;/a&gt;, and the compiler itself.  We&amp;#39;ll have suggestions for &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;mini-projects&lt;/a&gt; for various levels of experience, but feel free to come along and work on whatever you fancy.&lt;/p&gt;
+&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/libref/index.html&quot;&gt;standard library&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual024.html&quot;&gt;runtime&lt;/a&gt;, tools (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/depend.html&quot;&gt;ocamldep&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc105&quot;&gt;ocamllex&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc107&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-camlp4/manual002.html&quot;&gt;camlp4&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual032.html&quot;&gt;ocamlbuild&lt;/a&gt;, the &lt;a href=&quot;http://caml.inria.fr/resources/doc/index.en.html&quot;&gt;documentation&lt;/a&gt;, and the compiler itself. We&amp;#39;ll have suggestions for &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;mini-projects&lt;/a&gt; for various levels of experience, but feel free to come along and work on whatever you fancy.&lt;/p&gt;
 
 &lt;p&gt;We&amp;#39;ll also be ordering pizza, so if you want to be counted for food you should aim to arrive by 6.30pm.&lt;/p&gt;
 </content>
