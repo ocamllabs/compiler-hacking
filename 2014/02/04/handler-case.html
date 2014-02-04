@@ -26,6 +26,8 @@
 <p class="meta">04 Feb 2014</p>
 
 <div class="post">
+<p>(Update: there's a <a href="http://caml.inria.fr/mantis/view.php?id=6318">Mantis issue open</a> to discuss this proposal.)</p>
+
 <p>OCaml&#39;s <code>try</code> construct is good at dealing with exceptions, but not so good at handling the case where no exception is raised.  This post describes a simple extension to <code>try</code> that adds support for handling the &quot;success&quot; case.</p>
 
 <p>Here&#39;s an example of code that benefits from the extension.  On a recent <a href="http://caml.inria.fr/resources/forums.en.html">caml-list</a> thread, <a href="http://cedeela.fr/%7Esimon/">Simon Cruanes</a> posted <a href="https://sympa.inria.fr/sympa/arc/caml-list/2014-01/msg00113.html">the following function</a> for iterating over a stream:</p>
