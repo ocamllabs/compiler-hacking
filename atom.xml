@@ -4,13 +4,43 @@
   <title>OCaml Labs compiler hacking</title>
   <link href="http://ocamllabs.github.com/compiler-hacking/"/>
   <link type="application/atom+xml" rel="self" href="http://ocamllabs.github.com/compiler-hacking/atom.xml"/>
-  <updated>2014-02-11T18:30:12+00:00</updated>
+  <updated>2014-04-24T00:20:46+01:00</updated>
   <id>http://ocamllabs.github.com/compiler-hacking/</id>
   <author>
     <name>OCaml Labs</name>
     <email>cl-ocamllabs@lists.cam.ac.uk</email>
   </author>
 
+  
+  <entry>
+    <id>http://ocamllabs.github.com/compiler-hacking/2014/04/24/fifth-compiler-hacking-session</id>
+    <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/2014/04/24/fifth-compiler-hacking-session.html"/>
+    <title>Fifth OCaml compiler hacking session</title>
+    <published>2014-04-24T01:16:01+01:00</published>
+    <updated>2014-04-24T01:16:01+01:00</updated>
+    <author>
+      <name>OCaml Labs</name>
+      <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
+    </author>
+    <content type="html">&lt;p&gt;It&amp;#39;s time for the fifth Cambridge OCaml compiler-hacking session!  We&amp;#39;ll be meeting in the &lt;a href=&quot;http://www.cl.cam.ac.uk/&quot;&gt;Computer Lab&lt;/a&gt; again next Tuesday evening.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/iapgw89dvmxhnb4e&quot;&gt;&lt;em&gt;indicate interest via Doodle&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;&lt;em&gt;sign up to the mailing list&lt;/em&gt;&lt;/a&gt; to receive updates:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;When&lt;/em&gt;: 6pm, Tuesday 29th April&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Who&lt;/em&gt;: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What&lt;/em&gt;: fixing bugs, implementing new features, learning about OCaml internals&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Wiki&lt;/em&gt;: &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki&quot;&gt;https://github.com/ocamllabs/compiler-hacking/wiki&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/libref/index.html&quot;&gt;standard library&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual024.html&quot;&gt;runtime&lt;/a&gt;, tools (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/depend.html&quot;&gt;ocamldep&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc105&quot;&gt;ocamllex&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc107&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual032.html&quot;&gt;ocamlbuild&lt;/a&gt;, the &lt;a href=&quot;http://caml.inria.fr/resources/doc/index.en.html&quot;&gt;documentation&lt;/a&gt;, and the compiler itself. We&amp;#39;ll have suggestions for &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;mini-projects&lt;/a&gt; for various levels of experience (see also some &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-previously-worked-on&quot;&gt;things we&amp;#39;ve worked on in previous sessions&lt;/a&gt;), but feel free to come along and work on whatever you fancy.&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;ll also be ordering pizza, so if you want to be counted for food you should aim to arrive by 6.30pm.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://ocamllabs.github.com/compiler-hacking/2014/02/11/fourth-compiler-hacking-session</id>
