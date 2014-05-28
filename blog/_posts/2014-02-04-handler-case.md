@@ -4,6 +4,8 @@ title:  How to handle success
 date:   2014-02-04 16:05:05
 ---
 
+(Update (2014-05-05): The [`match/exception`](#match-exception) variant of this proposal has been [merged into OCaml trunk][ocaml-commit], ready for release in 4.02.)
+
 (Update: there's a [Mantis issue open](http://caml.inria.fr/mantis/view.php?id=6318) to discuss this proposal.)
 
 OCaml's `try` construct is good at dealing with exceptions, but not so good at handling the case where no exception is raised.  This post describes a simple extension to `try` that adds support for handling the "success" case.
@@ -270,6 +272,7 @@ Of course, static exceptions allow many other programs to be expressed that are 
 
 Finally, I discovered while writing this article that Christophe Raffalli proposed the handler case design fifteen years ago in a [message to caml-list][raffalli-message]!  Christophe's proposal wasn't picked up back then, but perhaps the time has now come to give OCaml programmers a way to handle success.
 
+<a name="match-exception"/>
 ### Postscript: a symmetric extension
 
 The `try` construct in current OCaml supports matching against raised exceptions but not against the value produced when no exception is raised.  Contrariwise, the `match` construct supports matching against the value produced when no exception is raised, but does not support matching against raised exceptions.  As implemented, the patch addresses this asymmetry, extending `match` with clauses that specify the "failure continuation":
@@ -351,3 +354,4 @@ Since both `val` and `exception` are existing keywords, the extensions to both `
 [raffalli-message]: http://caml.inria.fr/pub/ml-archives/caml-list/1999/12/a6d3ce9671b16a33530035c2b42df011.en.html
 [try-ocaml]: http://try.ocamlpro.com/
 [ocamlpro]: http://www.ocamlpro.com/
+[ocaml-commit]: https://github.com/ocaml/ocaml/commit/0f1fb19cbe48918c5d070e475c39052875623a85
