@@ -4,6 +4,8 @@ title:  How to handle success
 date:   2014-02-04 16:05:05
 ---
 
+(Update (2014-05-28): Added notes on [delimcc](#delimcc) and [Catch me if you can](#catch-me) to the *Discoveries* section.)
+
 (Update (2014-05-05): The [`match/exception`](#match-exception) variant of this proposal has been [merged into OCaml trunk][ocaml-commit], ready for release in 4.02.)
 
 (Update: there's a [Mantis issue open](http://caml.inria.fr/mantis/view.php?id=6318) to discuss this proposal.)
@@ -244,6 +246,17 @@ The [eff implementation][eff-handler-case-grammar] uses the term "handler case" 
 
 Several OCaml programmers have proposed or implemented constructs related to handler case.
 
+<a name="delimcc"></a>
+Oleg's [delimcc][delimcc] library for delimited continuations provides the operations needed to support the success continuation style.  The programmer can use `push_prompt` to establish a context, then call `shift` or `shift0` to return control to that context later, much as `try` establishes a context to which `raise` can transfer control.  If `shift` is not called then control returns normally from the continuation argument to `push_prompt`.  Using delimcc we might implement `iter_stream` as follows:
+
+```ocaml
+let rec iter_stream f s =
+    let p = new_prompt () in
+    match push_prompt p (fun () -> `Val (my_stream_get s p)) with
+  | `Val (x, s') -> f x; iter_stream f s'
+  | `End_of_stream -> ()
+```
+
 [Martin Jambon][jambon] has [implemented][micmatch-extension] a construct equivalent to Exceptional Syntax for OCaml as part of the [micmatch extension][micmatch].  His implementation allows us to write `iter_stream` in much the same way as Benton and Kennedy's proposal:
 
 ```ocaml
@@ -270,9 +283,12 @@ let rec iter_stream f s =
 
 Of course, static exceptions allow many other programs to be expressed that are not readily expressible using handler case.
 
+<a name="catch-me"></a>
+In their 2008 paper [Catch me if you can: Towards type-safe, hierarchical, lightweight, polymorphic and efficient error management in OCaml][catch-me] David Teller Arnaud Spiwack and Till Varoquaux added an `attempt` keyword to OCaml that extends `match`-style pattern matching with both a single optional value case and an optional `finally` clause.
+
 Finally, I discovered while writing this article that Christophe Raffalli proposed the handler case design fifteen years ago in a [message to caml-list][raffalli-message]!  Christophe's proposal wasn't picked up back then, but perhaps the time has now come to give OCaml programmers a way to handle success.
 
-<a name="match-exception"/>
+<a name="match-exception"></a>
 ### Postscript: a symmetric extension
 
 The `try` construct in current OCaml supports matching against raised exceptions but not against the value produced when no exception is raised.  Contrariwise, the `match` construct supports matching against the value produced when no exception is raised, but does not support matching against raised exceptions.  As implemented, the patch addresses this asymmetry, extending `match` with clauses that specify the "failure continuation":
@@ -355,3 +371,5 @@ Since both `val` and `exception` are existing keywords, the extensions to both `
 [try-ocaml]: http://try.ocamlpro.com/
 [ocamlpro]: http://www.ocamlpro.com/
 [ocaml-commit]: https://github.com/ocaml/ocaml/commit/0f1fb19cbe48918c5d070e475c39052875623a85
+[delimcc]: http://okmij.org/ftp/continuations/implementations.html
+[catch-me]: http://www.univ-orleans.fr/lifo/Members/David.Teller/publications/ml2008.pdf
