@@ -4,7 +4,7 @@
   <title>OCaml Labs compiler hacking</title>
   <link href="http://ocamllabs.github.com/compiler-hacking/"/>
   <link type="application/atom+xml" rel="self" href="http://ocamllabs.github.com/compiler-hacking/atom.xml"/>
-  <updated>2014-04-24T00:20:46+01:00</updated>
+  <updated>2014-05-28T20:08:23+09:00</updated>
   <id>http://ocamllabs.github.com/compiler-hacking/</id>
   <author>
     <name>OCaml Labs</name>
@@ -13,41 +13,11 @@
 
   
   <entry>
-    <id>http://ocamllabs.github.com/compiler-hacking/2014/04/24/fifth-compiler-hacking-session</id>
-    <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/2014/04/24/fifth-compiler-hacking-session.html"/>
-    <title>Fifth OCaml compiler hacking session</title>
-    <published>2014-04-24T01:16:01+01:00</published>
-    <updated>2014-04-24T01:16:01+01:00</updated>
-    <author>
-      <name>OCaml Labs</name>
-      <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
-    </author>
-    <content type="html">&lt;p&gt;It&amp;#39;s time for the fifth Cambridge OCaml compiler-hacking session!  We&amp;#39;ll be meeting in the &lt;a href=&quot;http://www.cl.cam.ac.uk/&quot;&gt;Computer Lab&lt;/a&gt; again next Tuesday evening.&lt;/p&gt;
-
-&lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/iapgw89dvmxhnb4e&quot;&gt;&lt;em&gt;indicate interest via Doodle&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;&lt;em&gt;sign up to the mailing list&lt;/em&gt;&lt;/a&gt; to receive updates:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;When&lt;/em&gt;: 6pm, Tuesday 29th April&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Who&lt;/em&gt;: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What&lt;/em&gt;: fixing bugs, implementing new features, learning about OCaml internals&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Wiki&lt;/em&gt;: &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki&quot;&gt;https://github.com/ocamllabs/compiler-hacking/wiki&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/libref/index.html&quot;&gt;standard library&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual024.html&quot;&gt;runtime&lt;/a&gt;, tools (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/depend.html&quot;&gt;ocamldep&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc105&quot;&gt;ocamllex&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc107&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual032.html&quot;&gt;ocamlbuild&lt;/a&gt;, the &lt;a href=&quot;http://caml.inria.fr/resources/doc/index.en.html&quot;&gt;documentation&lt;/a&gt;, and the compiler itself. We&amp;#39;ll have suggestions for &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;mini-projects&lt;/a&gt; for various levels of experience (see also some &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-previously-worked-on&quot;&gt;things we&amp;#39;ve worked on in previous sessions&lt;/a&gt;), but feel free to come along and work on whatever you fancy.&lt;/p&gt;
-
-&lt;p&gt;We&amp;#39;ll also be ordering pizza, so if you want to be counted for food you should aim to arrive by 6.30pm.&lt;/p&gt;
-</content>
-  </entry>
-  
-  <entry>
     <id>http://ocamllabs.github.com/compiler-hacking/2014/02/11/fourth-compiler-hacking-session</id>
     <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/2014/02/11/fourth-compiler-hacking-session.html"/>
     <title>Fourth OCaml compiler hacking session</title>
-    <published>2014-02-11T12:10:29+00:00</published>
-    <updated>2014-02-11T12:10:29+00:00</updated>
+    <published>2014-02-11T21:10:29+09:00</published>
+    <updated>2014-02-11T21:10:29+09:00</updated>
     <author>
       <name>OCaml Labs</name>
       <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
@@ -73,16 +43,20 @@
   </entry>
   
   <entry>
-    <id>http://ocamllabs.github.com/compiler-hacking/2014/02/04/handler-case</id>
-    <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/2014/02/04/handler-case.html"/>
+    <id>http://ocamllabs.github.com/compiler-hacking/2014/02/05/handler-case</id>
+    <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/2014/02/05/handler-case.html"/>
     <title>How to handle success</title>
-    <published>2014-02-04T16:05:05+00:00</published>
-    <updated>2014-02-04T16:05:05+00:00</updated>
+    <published>2014-02-05T01:05:05+09:00</published>
+    <updated>2014-02-05T01:05:05+09:00</updated>
     <author>
       <name>OCaml Labs</name>
       <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
     </author>
-    <content type="html">&lt;p&gt;(Update: there&amp;#39;s a &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6318&quot;&gt;Mantis issue open&lt;/a&gt; to discuss this proposal.)&lt;/p&gt;
+    <content type="html">&lt;p&gt;(Update (2014-05-28): Added notes on &lt;a href=&quot;#delimcc&quot;&gt;delimcc&lt;/a&gt; and &lt;a href=&quot;#catch-me&quot;&gt;Catch me if you can&lt;/a&gt; to the &lt;em&gt;Discoveries&lt;/em&gt; section.)&lt;/p&gt;
+
+&lt;p&gt;(Update (2014-05-05): The &lt;a href=&quot;#match-exception&quot;&gt;&lt;code&gt;match/exception&lt;/code&gt;&lt;/a&gt; variant of this proposal has been &lt;a href=&quot;https://github.com/ocaml/ocaml/commit/0f1fb19cbe48918c5d070e475c39052875623a85&quot;&gt;merged into OCaml trunk&lt;/a&gt;, ready for release in 4.02.)&lt;/p&gt;
+
+&lt;p&gt;(Update: there&amp;#39;s a &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=6318&quot;&gt;Mantis issue open&lt;/a&gt; to discuss this proposal.)&lt;/p&gt;
 
 &lt;p&gt;OCaml&amp;#39;s &lt;code&gt;try&lt;/code&gt; construct is good at dealing with exceptions, but not so good at handling the case where no exception is raised.  This post describes a simple extension to &lt;code&gt;try&lt;/code&gt; that adds support for handling the &amp;quot;success&amp;quot; case.&lt;/p&gt;
 
@@ -279,6 +253,14 @@ summary:     Bring alpha100 revision back to mainline
 
 &lt;p&gt;Several OCaml programmers have proposed or implemented constructs related to handler case.&lt;/p&gt;
 
+&lt;p&gt;&lt;a name=&quot;delimcc&quot;&gt;&lt;/a&gt;
+Oleg&amp;#39;s &lt;a href=&quot;http://okmij.org/ftp/continuations/implementations.html&quot;&gt;delimcc&lt;/a&gt; library for delimited continuations provides the operations needed to support the success continuation style.  The programmer can use &lt;code&gt;push_prompt&lt;/code&gt; to establish a context, then call &lt;code&gt;shift&lt;/code&gt; or &lt;code&gt;shift0&lt;/code&gt; to return control to that context later, much as &lt;code&gt;try&lt;/code&gt; establishes a context to which &lt;code&gt;raise&lt;/code&gt; can transfer control.  If &lt;code&gt;shift&lt;/code&gt; is not called then control returns normally from the continuation argument to &lt;code&gt;push_prompt&lt;/code&gt;.  Using delimcc we might implement &lt;code&gt;iter_stream&lt;/code&gt; as follows:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_prompt&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push_prompt&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my_stream_get&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;End_of_stream&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;http://mjambon.com/&quot;&gt;Martin Jambon&lt;/a&gt; has &lt;a href=&quot;http://mjambon.com/mikmatch-manual.html#htoc16&quot;&gt;implemented&lt;/a&gt; a construct equivalent to Exceptional Syntax for OCaml as part of the &lt;a href=&quot;http://mjambon.com/micmatch.html&quot;&gt;micmatch extension&lt;/a&gt;.  His implementation allows us to write &lt;code&gt;iter_stream&lt;/code&gt; in much the same way as Benton and Kennedy&amp;#39;s proposal:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ocaml language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iter_stream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_stream_get&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;
@@ -299,7 +281,12 @@ summary:     Bring alpha100 revision back to mainline
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Of course, static exceptions allow many other programs to be expressed that are not readily expressible using handler case.&lt;/p&gt;
 
+&lt;p&gt;&lt;a name=&quot;catch-me&quot;&gt;&lt;/a&gt;
+In their 2008 paper &lt;a href=&quot;http://www.univ-orleans.fr/lifo/Members/David.Teller/publications/ml2008.pdf&quot;&gt;Catch me if you can: Towards type-safe, hierarchical, lightweight, polymorphic and efficient error management in OCaml&lt;/a&gt; David Teller, Arnaud Spiwack and Till Varoquaux added an &lt;code&gt;attempt&lt;/code&gt; keyword to OCaml that extends &lt;code&gt;match&lt;/code&gt;-style pattern matching with both a single optional value case and an optional &lt;code&gt;finally&lt;/code&gt; clause.&lt;/p&gt;
+
 &lt;p&gt;Finally, I discovered while writing this article that Christophe Raffalli proposed the handler case design fifteen years ago in a &lt;a href=&quot;http://caml.inria.fr/pub/ml-archives/caml-list/1999/12/a6d3ce9671b16a33530035c2b42df011.en.html&quot;&gt;message to caml-list&lt;/a&gt;!  Christophe&amp;#39;s proposal wasn&amp;#39;t picked up back then, but perhaps the time has now come to give OCaml programmers a way to handle success.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;match-exception&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Postscript: a symmetric extension&lt;/h3&gt;
 
@@ -329,8 +316,8 @@ summary:     Bring alpha100 revision back to mainline
     <id>http://ocamllabs.github.com/compiler-hacking/2013/10/30/third-compiler-hacking-session</id>
     <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/2013/10/30/third-compiler-hacking-session.html"/>
     <title>Third OCaml compiler hacking session</title>
-    <published>2013-10-30T11:49:04+00:00</published>
-    <updated>2013-10-30T11:49:04+00:00</updated>
+    <published>2013-10-30T20:49:04+09:00</published>
+    <updated>2013-10-30T20:49:04+09:00</updated>
     <author>
       <name>OCaml Labs</name>
       <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
@@ -359,8 +346,8 @@ summary:     Bring alpha100 revision back to mainline
     <id>http://ocamllabs.github.com/compiler-hacking/2013/09/17/compiler-hacking-july-2013</id>
     <link type="text/html" rel="alternate" href="http://ocamllabs.github.com/compiler-hacking/2013/09/17/compiler-hacking-july-2013.html"/>
     <title>Inaugural compiler hackers meeting</title>
-    <published>2013-09-17T12:49:04+01:00</published>
-    <updated>2013-09-17T12:49:04+01:00</updated>
+    <published>2013-09-17T20:49:04+09:00</published>
+    <updated>2013-09-17T20:49:04+09:00</updated>
     <author>
       <name>OCaml Labs</name>
       <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
