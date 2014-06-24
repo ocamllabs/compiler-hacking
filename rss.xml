@@ -6,8 +6,8 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Tue, 24 Jun 2014 02:32:33 +0100</pubDate>
-    <lastBuildDate>Tue, 24 Jun 2014 02:32:33 +0100</lastBuildDate>
+    <pubDate>Tue, 24 Jun 2014 02:37:37 +0100</pubDate>
+    <lastBuildDate>Tue, 24 Jun 2014 02:37:37 +0100</lastBuildDate>
 
     
     <item>
@@ -190,7 +190,9 @@ by &lt;a href=&quot;http://www.flickr.com/photos/h-k-d/&quot;&gt;Hartwig HKD&lt;
       <pubDate>Fri, 20 Jun 2014 19:50:00 +0100</pubDate>
       <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
       <guid>http://ocamllabs.github.com/compiler-hacking/2014/06/20/sixth-compiler-hacking-session</guid>
-      <description>&lt;p&gt;It&amp;#39;s time for the sixth Cambridge OCaml compiler-hacking session!  We&amp;#39;ll be meeting in the &lt;a href=&quot;http://www.cl.cam.ac.uk/&quot;&gt;Computer Lab&lt;/a&gt; again next Wednesday evening (25th June).&lt;/p&gt;
+      <description>&lt;p&gt;(Update (2014-06-24): Stephen Dolan will be giving a demo of multicore OCaml!)&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s time for the sixth Cambridge OCaml compiler-hacking session!  We&amp;#39;ll be meeting in the &lt;a href=&quot;http://www.cl.cam.ac.uk/&quot;&gt;Computer Lab&lt;/a&gt; again next Wednesday evening (25th June).&lt;/p&gt;
 
 &lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/2ps9gunbkiy3tp6i&quot;&gt;&lt;em&gt;indicate interest via Doodle&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;&lt;em&gt;sign up to the mailing list&lt;/em&gt;&lt;/a&gt; to receive updates:&lt;/p&gt;
 
