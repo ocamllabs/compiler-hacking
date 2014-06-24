@@ -4,6 +4,8 @@ title:  Sixth OCaml compiler hacking session
 date:   2014-06-20 18:50:00
 ---
 
+(Update (2014-06-24): Stephen Dolan will be giving a demo of multicore OCaml!)
+
 It's time for the sixth Cambridge OCaml compiler-hacking session!  We'll be meeting in the [Computer Lab](http://www.cl.cam.ac.uk/) again next Wednesday evening (25th June).
 
 If you're planning to come along, it'd be helpful if you could [*indicate interest via Doodle*](http://doodle.com/2ps9gunbkiy3tp6i) and [*sign up to the mailing list*](http://lists.ocaml.org/listinfo/cam-compiler-hacking) to receive updates:
@@ -31,3 +33,4 @@ We'll also be ordering pizza, so if you want to be counted for food you should a
 [ocaml-documentation]: http://caml.inria.fr/resources/doc/index.en.html
 [things-to-work-on]: https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on
 [things-worked-on]: https://github.com/ocamllabs/compiler-hacking/wiki/Things-previously-worked-on
+[multicore]: http://www.cl.cam.ac.uk/projects/ocamllabs/tasks/compiler.html#Multicore
