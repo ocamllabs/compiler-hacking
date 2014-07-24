@@ -6,9 +6,43 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Tue, 24 Jun 2014 02:37:37 +0100</pubDate>
-    <lastBuildDate>Tue, 24 Jun 2014 02:37:37 +0100</lastBuildDate>
+    <pubDate>Thu, 24 Jul 2014 08:34:19 +0100</pubDate>
+    <lastBuildDate>Thu, 24 Jul 2014 08:34:19 +0100</lastBuildDate>
 
+    
+    <item>
+      <title>Seventh OCaml compiler hacking session (at Citrix)</title>
+      <link>http://ocamllabs.github.com/compiler-hacking/2014/07/24/compiler-hacking-at-citrix.html</link>
+      <pubDate>Thu, 24 Jul 2014 10:00:00 +0100</pubDate>
+      <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
+      <guid>http://ocamllabs.github.com/compiler-hacking/2014/07/24/compiler-hacking-at-citrix</guid>
+      <description>&lt;p&gt;For the seventh Cambridge OCaml compiler-hacking session we&amp;#39;ll be meeting at &lt;a href=&quot;https://maps.google.co.uk/maps?q=101+Cambridge+Science+Park+Milton+Road,+Cambridge&amp;amp;hl=en&amp;amp;ll=52.232955,0.150338&amp;amp;spn=0.003082,0.006947&amp;amp;sll=52.231717,0.144648&amp;amp;sspn=0.012327,0.027788&amp;amp;oq=101Cambrideg+Science&amp;amp;t=h&amp;amp;hq=101+Cambridge+Science+Park+Milton+Road,&amp;amp;hnear=Cambridge,+United+Kingdom&amp;amp;z=18&quot;&gt;the Citrix office in the Cambridge Science Park&lt;/a&gt; on 6.30pm Friday 1st August.  Thanks to Citrix for supporting and hosting the session!&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;ll kick off with a demo from &lt;a href=&quot;https://github.com/def-lkb&quot;&gt;Frédéric Bour&lt;/a&gt; of modular implicits, an OCaml extension that adds support for overloading.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/46f2bnk4xny724in&quot;&gt;&lt;strong&gt;indicate interest via Doodle&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;sign up to the mailing list&lt;/a&gt; to receive updates:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Where&lt;/strong&gt;:
+  Citrix Systems Research &amp;amp; Development Ltd.&lt;br&gt;
+  &lt;a href=&quot;https://maps.google.co.uk/maps?q=101+Cambridge+Science+Park+Milton+Road,+Cambridge&amp;amp;hl=en&amp;amp;ll=52.232955,0.150338&amp;amp;spn=0.003082,0.006947&amp;amp;sll=52.231717,0.144648&amp;amp;sspn=0.012327,0.027788&amp;amp;oq=101Cambrideg+Science&amp;amp;t=h&amp;amp;hq=101+Cambridge+Science+Park+Milton+Road,&amp;amp;hnear=Cambridge,+United+Kingdom&amp;amp;z=18&quot;&gt;Building 101&lt;/a&gt;&lt;br&gt;
+  Cambridge Science Park&lt;br&gt;
+  Milton Road&lt;br&gt;
+  Cambridge, CB4 0FY&lt;br&gt;
+  United Kingdom  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;When&lt;/strong&gt;: 6.30pm, Friday 1st August&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Who&lt;/strong&gt;: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What&lt;/strong&gt;: fixing bugs, implementing new features, learning about OCaml internals&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Wiki&lt;/strong&gt;: &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki&quot;&gt;https://github.com/ocamllabs/compiler-hacking/wiki&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/libref/index.html&quot;&gt;standard library&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual024.html&quot;&gt;runtime&lt;/a&gt;, tools (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/depend.html&quot;&gt;ocamldep&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc105&quot;&gt;ocamllex&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc107&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual032.html&quot;&gt;ocamlbuild&lt;/a&gt;, the &lt;a href=&quot;http://caml.inria.fr/resources/doc/index.en.html&quot;&gt;documentation&lt;/a&gt;, and the compiler itself. We&amp;#39;ll have suggestions for &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;mini-projects&lt;/a&gt; for various levels of experience (see also some &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-previously-worked-on&quot;&gt;things we&amp;#39;ve worked on in previous sessions&lt;/a&gt;), but feel free to come along and work on whatever you fancy.&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;ll also be ordering pizza, so if you want to be counted for food you should aim to arrive by 6.45pm.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Highlights from recent sessions</title>
