@@ -6,8 +6,8 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Tue, 23 Sep 2014 16:53:59 +0100</pubDate>
-    <lastBuildDate>Tue, 23 Sep 2014 16:53:59 +0100</lastBuildDate>
+    <pubDate>Thu, 25 Sep 2014 12:38:07 +0100</pubDate>
+    <lastBuildDate>Thu, 25 Sep 2014 12:38:07 +0100</lastBuildDate>
 
     
     <item>
@@ -16,7 +16,9 @@
       <pubDate>Tue, 23 Sep 2014 18:00:00 +0100</pubDate>
       <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
       <guid>http://ocamllabs.github.com/compiler-hacking/2014/09/23/compiler-hacking-by-the-river</guid>
-      <description>&lt;p&gt;For the eighth Cambridge OCaml compiler hacking evening we&amp;#39;ll be meeting in the &lt;a href=&quot;http://www.cam.ac.uk/news/first-ever-postdoc-centre-is-new-home-for-research-staff&quot;&gt;University Postdoc centre&lt;/a&gt; at &lt;a href=&quot;https://goo.gl/maps/cZXev&quot;&gt;16 Mill Lane&lt;/a&gt; (near the river, next door to &lt;a href=&quot;http://makespace.org/space/&quot;&gt;Makespace&lt;/a&gt;) on 6.30pm Tuesday 30th September.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;strong&gt;Update: This session will be a joint F#/OCaml hacking event, beginning with a talk from Don Syme about F# compiler and language development!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For the eighth Cambridge OCaml compiler hacking evening we&amp;#39;ll be meeting in the &lt;a href=&quot;http://www.cam.ac.uk/news/first-ever-postdoc-centre-is-new-home-for-research-staff&quot;&gt;University Postdoc centre&lt;/a&gt; at &lt;a href=&quot;https://goo.gl/maps/cZXev&quot;&gt;16 Mill Lane&lt;/a&gt; (near the river, next door to &lt;a href=&quot;http://makespace.org/space/&quot;&gt;Makespace&lt;/a&gt;) on 6.30pm Tuesday 30th September.&lt;/p&gt;
 
 &lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/svwkevcs5p2xs8n8&quot;&gt;&lt;strong&gt;indicate interest via Doodle&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;sign up to the mailing list&lt;/a&gt; to receive updates:&lt;/p&gt;
 
