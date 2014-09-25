@@ -4,6 +4,8 @@ title:  Eighth OCaml compiler hacking evening (at Mill Lane, by the river)
 date:   2014-09-23 17:00:00
 ---
 
+**Update: This session will be a joint F#/OCaml hacking event, beginning with a talk from Don Syme about F# compiler and language development!**
+
 For the eighth Cambridge OCaml compiler hacking evening we'll be meeting in the [University Postdoc centre](http://www.cam.ac.uk/news/first-ever-postdoc-centre-is-new-home-for-research-staff) at [16 Mill Lane](https://goo.gl/maps/cZXev) (near the river, next door to [Makespace](http://makespace.org/space/)) on 6.30pm Tuesday 30th September.
 
 If you're planning to come along, it'd be helpful if you could [**indicate interest via Doodle**](http://doodle.com/svwkevcs5p2xs8n8) and [sign up to the mailing list](http://lists.ocaml.org/listinfo/cam-compiler-hacking) to receive updates:
