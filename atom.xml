@@ -4,7 +4,7 @@
   <title>OCaml Labs compiler hacking</title>
   <link href="http://ocamllabs.github.com/compiler-hacking/"/>
   <link type="application/atom+xml" rel="self" href="http://ocamllabs.github.com/compiler-hacking/atom.xml"/>
-  <updated>2015-02-05T11:33:36+00:00</updated>
+  <updated>2015-02-05T11:36:28+00:00</updated>
   <id>http://ocamllabs.github.com/compiler-hacking/</id>
   <author>
     <name>OCaml Labs</name>
@@ -22,7 +22,7 @@
       <name>OCaml Labs</name>
       <uri>http://ocamllabs.github.com/compiler-hacking/</uri>
     </author>
-    <content type="html">&lt;p&gt;We&amp;#39;ll be meeting in the Computer Lab next Tuesday for another evening of compiler hacking.  All welcome!  Please &lt;strong&gt;&lt;a href=&quot;http://doodle.com/zxmeyn2ih92mke85&quot;&gt;add yourself to the Doodle poll&lt;/a&gt;&lt;/strong&gt; if you&amp;#39;re planning to come along, and sign up to the &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;mailing list&lt;/a&gt; to receive updates.&lt;/p&gt;
+    <content type="html">&lt;p&gt;We&amp;#39;ll be meeting in the Computer Lab next Tuesday (10th February 2015) for another evening of compiler hacking.  All welcome!  Please &lt;strong&gt;&lt;a href=&quot;http://doodle.com/zxmeyn2ih92mke85&quot;&gt;add yourself to the Doodle poll&lt;/a&gt;&lt;/strong&gt; if you&amp;#39;re planning to come along, and sign up to the &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;mailing list&lt;/a&gt; to receive updates.&lt;/p&gt;
 
 &lt;h3&gt;Talk: Generating code with polymorphic let (Oleg Kiselyov)&lt;/h3&gt;
 
