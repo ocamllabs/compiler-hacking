@@ -4,7 +4,7 @@ title:  Ninth OCaml compiler hacking evening (back in the lab, with a talk from 
 date:   2015-02-05 12:00:00
 ---
 
-We'll be meeting in the Computer Lab next Tuesday for another evening of compiler hacking.  All welcome!  Please **[add yourself to the Doodle poll](http://doodle.com/zxmeyn2ih92mke85)** if you're planning to come along, and sign up to the [mailing list](http://lists.ocaml.org/listinfo/cam-compiler-hacking) to receive updates.
+We'll be meeting in the Computer Lab next Tuesday (10th February 2015) for another evening of compiler hacking.  All welcome!  Please **[add yourself to the Doodle poll](http://doodle.com/zxmeyn2ih92mke85)** if you're planning to come along, and sign up to the [mailing list](http://lists.ocaml.org/listinfo/cam-compiler-hacking) to receive updates.
 
 ### Talk: Generating code with polymorphic let (Oleg Kiselyov)
 
