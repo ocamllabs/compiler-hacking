@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <link rel="alternate" type="application/rss+xml" title="RSS Feed for OCaml Labs compiler hacking" href="/compiler-hacking/rss.xml" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Ninth OCaml compiler hacking evening (back in the lab, with a talk from Oleg)</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/compiler-hacking/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/compiler-hacking/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/compiler-hacking/">OCaml Labs compiler hacking</a></h1>
+            <a class="extra" href="/compiler-hacking/">home</a>
+          </div>
+
+          <h2>Ninth OCaml compiler hacking evening (back in the lab, with a talk from Oleg)</h2>
+<p class="meta">05 Feb 2015</p>
+
+<div class="post">
+<p>We&#39;ll be meeting in the Computer Lab next Tuesday for another evening of compiler hacking.  All welcome!  Please <strong><a href="http://doodle.com/zxmeyn2ih92mke85">add yourself to the Doodle poll</a></strong> if you&#39;re planning to come along, and sign up to the <a href="http://lists.ocaml.org/listinfo/cam-compiler-hacking">mailing list</a> to receive updates.</p>
+
+<h3>Talk: Generating code with polymorphic let (Oleg Kiselyov)</h3>
+
+<p>This time we&#39;ll be starting with a talk from <a href="http://okmij.org/ftp">Oleg Kiselyov</a>:</p>
+
+<blockquote>
+<h4>Generating code with polymorphic let</h4>
+
+<p>One of the simplest ways of implementing staging is source-to-source
+translation from the quotation-unquotation code to code-generating
+combinators. For example, MetaOCaml could be implemented as a
+pre-processor to the ordinary OCaml. However simple, the approach is
+surprising productive and extensible, as Lightweight Modular Staging
+(LMS) in Scala has demonstrated. However, there is a fatal flaw:
+handling quotations that contain polymorphic let. The translation to
+code-generating combinators represents a future-stage let-binding with
+the present-staging lambda-binding, which is monomorphic. Even if
+polymorphic lambda-bindings are allowed, they require type
+annotations, which precludes the source-to-source translation.</p>
+
+<p>We show the solution to the problem, using a different translation. It
+works with the current OCaml. It also almost works in theory,
+requiring a small extension to the relaxed value
+restriction. Surprisingly, this extension seems to be exactly the one
+needed to make the value restriction sound in a staged language with
+reference cells and cross-stage-persistence.</p>
+
+<p>The old, seems completely settled question of value restriction is
+thrown deep-open in staged languages. We gain a profound problem to
+work on.</p>
+</blockquote>
+
+<h3>(Approximate) schedule</h3>
+
+<p><strong>6pm</strong> Start, set up<br>
+<strong>6.30pm</strong> Talk<br>
+<strong>7pm</strong> Pizza<br>
+<strong>7.30pm-10pm</strong> Compiler hacking  </p>
+
+<h3>Further details</h3>
+
+<p><strong>Where</strong>:
+  Room <a href="http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;labels=1">FW11</a>, <a href="http://www.cl.cam.ac.uk/directions/">Computer Laboratory, Madingley Road</a></p>
+
+<p><strong>When</strong>: 6pm, Tuesday 10th February</p>
+
+<p><strong>Who</strong>: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&#39;t necessary.</p>
+
+<p><strong>What</strong>: fixing bugs, implementing new features, learning about OCaml internals.</p>
+
+<p><strong>Wiki</strong>: <a href="https://github.com/ocamllabs/compiler-hacking/wiki">https://github.com/ocamllabs/compiler-hacking/wiki</a></p>
+
+<p>We&#39;re defining &quot;compiler&quot; pretty broadly, to include anything that&#39;s part of the standard distribution, which means at least the <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.01/libref/index.html">standard library</a>, <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual024.html">runtime</a>, tools (<a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.01/depend.html">ocamldep</a>, <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc105">ocamllex</a>, <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc107">ocamlyacc</a>, etc.), <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual032.html">ocamlbuild</a>, the <a href="http://caml.inria.fr/resources/doc/index.en.html">documentation</a>, and the compiler itself. We&#39;ll have suggestions for <a href="https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on">mini-projects</a> for various levels of experience (see also some <a href="https://github.com/ocamllabs/compiler-hacking/wiki/Things-previously-worked-on">things we&#39;ve done on previous evenings</a>), but feel free to come along and work on whatever you fancy.</p>
+
+<p>We&#39;ll be ordering pizza, so if you want to be counted for food you should aim to arrive by 6pm.</p>
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <a href="https://github.com/ocamllabs/compiler-hacking/wiki">OCaml Labs compiler hacking</a>
+          </div>
+        </div>
+
+    </body>
+</html>
