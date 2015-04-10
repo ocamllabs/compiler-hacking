@@ -6,9 +6,35 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Thu, 05 Feb 2015 11:36:28 +0000</pubDate>
-    <lastBuildDate>Thu, 05 Feb 2015 11:36:28 +0000</lastBuildDate>
+    <pubDate>Fri, 10 Apr 2015 15:58:47 +0100</pubDate>
+    <lastBuildDate>Fri, 10 Apr 2015 15:58:47 +0100</lastBuildDate>
 
+    
+    <item>
+      <title>South of England Regional Programming Language Seminar (S-REPLS)</title>
+      <link>http://ocamllabs.github.com/compiler-hacking/2015/02/05/south-of-england-regional-programming-language-seminar.html</link>
+      <pubDate>Thu, 05 Feb 2015 12:00:00 +0000</pubDate>
+      <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
+      <guid>http://ocamllabs.github.com/compiler-hacking/2015/02/05/south-of-england-regional-programming-language-seminar</guid>
+      <description>&lt;p&gt;If you&amp;#39;re within travelling distance of Cambridge and interested in
+programming language theory then you might like to
+&lt;a href=&quot;http://doodle.com/n93sqw86sa7azc3m&quot;&gt;sign up&lt;/a&gt; to come along to the first
+&lt;a href=&quot;http://dominic-mulligan.co.uk/?page_id=148&quot;&gt;South of England Regional Programming Language Seminar&lt;/a&gt;
+at &lt;a href=&quot;http://www.wolfson.cam.ac.uk/&quot;&gt;Wolfson College&lt;/a&gt; on the 30th April.  We
+have an exciting programme, starting with an invited talk from Conor McBride:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The dependent lollipop&lt;/strong&gt; &lt;em&gt;(Conor McBride, Strathclyde)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Improving implicit parallelism&lt;/strong&gt; &lt;em&gt;(Jose Calderon, York)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Many-core compiler fuzzing&lt;/strong&gt; &lt;em&gt;(Alastair Donaldson, Imperial)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fine-grained language composition&lt;/strong&gt; &lt;em&gt;(Laurence Tratt, King&amp;#39;s College London)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Graphical models of concurrent program execution&lt;/strong&gt; &lt;em&gt;(Tony Hoare, Microsoft)&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Further information is available on the
+&lt;a href=&quot;http://dominic-mulligan.co.uk/?page_id=148&quot;&gt;S-REPLS website&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Ninth OCaml compiler hacking evening (back in the lab, with a talk from Oleg)</title>
