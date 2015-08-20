@@ -6,9 +6,63 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Fri, 10 Apr 2015 15:58:47 +0100</pubDate>
-    <lastBuildDate>Fri, 10 Apr 2015 15:58:47 +0100</lastBuildDate>
+    <pubDate>Thu, 20 Aug 2015 14:01:20 +0100</pubDate>
+    <lastBuildDate>Thu, 20 Aug 2015 14:01:20 +0100</lastBuildDate>
 
+    
+    <item>
+      <title>Tenth OCaml compiler hacking evening and OCaml/ML talks</title>
+      <link>http://ocamllabs.github.com/compiler-hacking/2015/08/20/mini-workshop.html</link>
+      <pubDate>Thu, 20 Aug 2015 13:00:00 +0100</pubDate>
+      <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
+      <guid>http://ocamllabs.github.com/compiler-hacking/2015/08/20/mini-workshop</guid>
+      <description>&lt;p&gt;We&amp;#39;ll be meeting in the Computer Lab next Friday (28th August 2015) for another evening of compiler hacking.  All welcome!&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;ll also be having an afternoon of OCaml- and ML-related talks beforehand, with titles suspiciously similar to talks at the &lt;a href=&quot;http://www.mlworkshop.org/ml2015/&quot;&gt;ML Workshop&lt;/a&gt; and &lt;a href=&quot;https://ocaml.org/meetings/ocaml/2015/&quot;&gt;OCaml Workshop&lt;/a&gt; the following week.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re planning to come along to either the talks or to compiler hacking, please &lt;strong&gt;&lt;a href=&quot;http://doodle.com/82arpxipidgqbvwi&quot;&gt;add yourself to the Doodle poll&lt;/a&gt;&lt;/strong&gt;.  Further updates, if any, will be posted to the &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;compiler hacking mailing list&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Schedule&lt;/h3&gt;
+
+&lt;p&gt;3.30pm &lt;strong&gt;Polymorphism, subtyping and type inference in MLsub&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Stephen Dolan (with Alan Mycroft)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;3.55pm &lt;strong&gt;The State of the OCaml Platform: September 2015&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Anil Madhavapeddy (with Amir Chaudhry, Thomas Gazagnaire, Jeremy Yallop, David Sheets)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;4.20pm &lt;strong&gt;Modular macros&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Jeremy Yallop (with Leo White)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;4.45pm Break&lt;/p&gt;
+
+&lt;p&gt;5.15pm &lt;strong&gt;Effective Concurrency through Algebraic Effects&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;KC Sivaramakrishnan (with Stephen Dolan, Leo White, Jeremy Yallop, Anil Madhavapeddy)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;5.40pm &lt;strong&gt;A review of the growth of the OCaml community&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Amir Chaudhry&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;6.05pm &lt;strong&gt;Persistent Networking with Irmin and MirageOS&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Mindy Preston (with Magnus Skjegstad, Thomas Gazagnaire, Richard Mortier, Anil Madhavapeddy)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;6.30pm &lt;strong&gt;Food&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;7.30pm &lt;strong&gt;Compiler hacking&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3&gt;Further details&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Where&lt;/strong&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW26&amp;amp;amp;labels=1&quot;&gt;FW26&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;When&lt;/strong&gt;: 3.30pm (workshop); 6.30pm (compiler hacking), Friday 28th August 2015&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Who&lt;/strong&gt;: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What&lt;/strong&gt;: fixing bugs, implementing new features, learning about OCaml internals.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Wiki&lt;/strong&gt;: &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki&quot;&gt;https://github.com/ocamllabs/compiler-hacking/wiki&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/libref/index.html&quot;&gt;standard library&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual024.html&quot;&gt;runtime&lt;/a&gt;, tools (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.01/depend.html&quot;&gt;ocamldep&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc105&quot;&gt;ocamllex&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html#toc107&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual032.html&quot;&gt;ocamlbuild&lt;/a&gt;, the &lt;a href=&quot;http://caml.inria.fr/resources/doc/index.en.html&quot;&gt;documentation&lt;/a&gt;, and the compiler itself. We&amp;#39;ll have suggestions for &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;mini-projects&lt;/a&gt; for various levels of experience (see also some &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-previously-worked-on&quot;&gt;things we&amp;#39;ve done on previous evenings&lt;/a&gt;), but feel free to come along and work on whatever you fancy.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>South of England Regional Programming Language Seminar (S-REPLS)</title>
