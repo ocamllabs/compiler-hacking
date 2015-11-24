@@ -6,9 +6,35 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Thu, 20 Aug 2015 14:01:20 +0100</pubDate>
-    <lastBuildDate>Thu, 20 Aug 2015 14:01:20 +0100</lastBuildDate>
+    <pubDate>Tue, 24 Nov 2015 11:47:58 +0000</pubDate>
+    <lastBuildDate>Tue, 24 Nov 2015 11:47:58 +0000</lastBuildDate>
 
+    
+    <item>
+      <title>Eleventh OCaml compiler hacking evening at Pembroke College</title>
+      <link>http://ocamllabs.github.com/compiler-hacking/2015/11/24/compiler-hacking-at-pembroke.html</link>
+      <pubDate>Tue, 24 Nov 2015 12:00:00 +0000</pubDate>
+      <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
+      <guid>http://ocamllabs.github.com/compiler-hacking/2015/11/24/compiler-hacking-at-pembroke</guid>
+      <description>&lt;p&gt;It&amp;#39;s time for the eleventh Cambridge OCaml compiler-hacking evening! This time we&amp;#39;re heading to central Cambridge, to enjoy all that &lt;a href=&quot;http://www.pem.cam.ac.uk/&quot;&gt;Pembroke College&lt;/a&gt; has to offer.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;strong&gt;indicate interest &lt;a href=&quot;http://doodle.com/poll/r5u7gzk5qqbq52u4&quot;&gt;via Doodle&lt;/a&gt;&lt;/strong&gt; and sign up to the &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;mailing list&lt;/a&gt; to receive updates.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Where&lt;/strong&gt;&lt;/em&gt;: Outer Parlour, &lt;a href=&quot;https://www.google.co.uk/maps/place/Pembroke+College/@52.2018741,0.1177328,17z/data=!3m1!4b1!4m2!3m1!1s0x47d870a2a3162b45:0x178705666a5d2498&quot;&gt;Pembroke College&lt;/a&gt;, Cambridge CB2 1RF. Head through the entrance on Trumpington Street, and we&amp;#39;ll be there at the Porter&amp;#39;s Lodge to direct you.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;When&lt;/strong&gt;&lt;/em&gt;: 6pm, Monday 30th November&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Who&lt;/strong&gt;&lt;/em&gt;: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;What&lt;/strong&gt;&lt;/em&gt;: fixing bugs, implementing new features, learning about OCaml internals&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Wiki&lt;/strong&gt;&lt;/em&gt;: https://github.com/ocamllabs/compiler-hacking/wiki&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/stdlib&quot;&gt;standard library&lt;/a&gt;, &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/byterun&quot;&gt;run&lt;/a&gt;&lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/asmrun&quot;&gt;time&lt;/a&gt;, tools (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml/depend.html&quot;&gt;ocamldep&lt;/a&gt;, &lt;a href=&quot;https://realworldocaml.org/v1/en/html/parsing-with-ocamllex-and-menhir.html&quot;&gt;ocamllex&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), &lt;a href=&quot;https://github.com/ocaml/camlp4&quot;&gt;camlp4&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-400/manual032.html&quot;&gt;ocamlbuild&lt;/a&gt;, the &lt;a href=&quot;https://github.com/ocaml/ocaml-manual&quot;&gt;documentation&lt;/a&gt;, &lt;a href=&quot;https://opam.ocaml.org/&quot;&gt;OPAM&lt;/a&gt;, and the &lt;a href=&quot;https://github.com/ocaml/ocaml&quot;&gt;compiler&lt;/a&gt; itself. We&amp;#39;ll have &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;suggestions for mini-projects&lt;/a&gt; for various levels of experience, but feel free to come along and work on whatever you fancy.&lt;/p&gt;
+
+&lt;p&gt;Drinks and finger buffet will be provided.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Tenth OCaml compiler hacking evening and OCaml/ML talks</title>
