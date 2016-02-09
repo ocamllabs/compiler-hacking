@@ -6,9 +6,37 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Tue, 24 Nov 2015 11:47:58 +0000</pubDate>
-    <lastBuildDate>Tue, 24 Nov 2015 11:47:58 +0000</lastBuildDate>
+    <pubDate>Tue, 09 Feb 2016 10:41:25 +0000</pubDate>
+    <lastBuildDate>Tue, 09 Feb 2016 10:41:25 +0000</lastBuildDate>
 
+    
+    <item>
+      <title>Twelth OCaml compiler hacking evening at Pembroke College</title>
+      <link>http://ocamllabs.github.com/compiler-hacking/2016/02/09/compiler-hacking-returns-to-pembroke.html</link>
+      <pubDate>Tue, 09 Feb 2016 11:00:00 +0000</pubDate>
+      <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
+      <guid>http://ocamllabs.github.com/compiler-hacking/2016/02/09/compiler-hacking-returns-to-pembroke</guid>
+      <description>&lt;p&gt;It&amp;#39;s time for the twelfth Cambridge OCaml compiler-hacking evening! We&amp;#39;ll be back in &lt;a href=&quot;http://www.pem.cam.ac.uk/&quot;&gt;Pembroke College&lt;/a&gt; again, in the centre of Cambridge.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/compiler-hacking/imgs/pembroke_new_court.jpg&quot; alt=&quot;Pembroke&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/poll/u439rkzkawy8gftn&quot;&gt;indicate interest via Doodle&lt;/a&gt; and sign up to the mailing list to receive updates:&lt;/p&gt;
+
+&lt;p&gt;Where: N7, Pembroke College, Cambridge CB2 1RF. Head through the entrance on Trumpington Street, and we&amp;#39;ll be there at the Porter&amp;#39;s Lodge to direct you.&lt;/p&gt;
+
+&lt;p&gt;When: 7pm, Wednesday 17th February.&lt;/p&gt;
+
+&lt;p&gt;Who: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
+
+&lt;p&gt;What: fixing bugs, implementing new features, learning about OCaml internals&lt;/p&gt;
+
+&lt;p&gt;Wiki: https://github.com/ocamllabs/compiler-hacking/wiki&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the standard library, runtime, tools (ocamldep, ocamllex, ocamlyacc, etc.), camlp4, ocamlbuild, the documentation, and the compiler itself. We&amp;#39;ll have suggestions for mini-projects for various levels of experience, but feel free to come along and work on whatever you fancy.&lt;/p&gt;
+
+&lt;p&gt;Drinks and finger buffet will be provided.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Eleventh OCaml compiler hacking evening at Pembroke College</title>
