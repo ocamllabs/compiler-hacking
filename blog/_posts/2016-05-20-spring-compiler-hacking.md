@@ -20,7 +20,16 @@ _**What**_: fixing bugs, implementing new features, learning about OCaml interna
 
 _**Wiki**_: https://github.com/ocamllabs/compiler-hacking/wiki
 
-We're defining "compiler" pretty broadly, to include anything that's part of the standard distribution, which means at least the [standard library](https://github.com/ocaml/ocaml/tree/trunk/stdlib), [run](https://github.com/ocaml/ocaml/tree/trunk/byterun)[time](https://github.com/ocaml/ocaml/tree/trunk/asmrun), tools ([ocamldep](http://caml.inria.fr/pub/docs/manual-ocaml/depend.html), [ocamllex](https://realworldocaml.org/v1/en/html/parsing-with-ocamllex-and-menhir.html), [ocamlyacc](http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html), etc.), [camlp4](https://github.com/ocaml/camlp4), [ocamlbuild](http://caml.inria.fr/pub/docs/manual-ocaml-400/manual032.html), the [documentation](https://github.com/ocaml/ocaml-manual), [OPAM](https://opam.ocaml.org/), and the [compiler](https://github.com/ocaml/ocaml) itself. We'll have [suggestions for mini-projects](https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on) for various levels of experience, but feel free to come along and work on whatever you fancy.
+We're defining "compiler" pretty broadly, to include anything that's part of the standard distribution, which means at least the
+ [standard library](https://github.com/ocaml/ocaml/tree/trunk/stdlib),
+ [run](https://github.com/ocaml/ocaml/tree/trunk/byterun)[time](https://github.com/ocaml/ocaml/tree/trunk/asmrun), tools
+    ([ocamldep](http://caml.inria.fr/pub/docs/manual-ocaml/depend.html),
+     [ocamllex](https://realworldocaml.org/v1/en/html/parsing-with-ocamllex-and-menhir.html),
+     [ocamlyacc](http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html), etc.), the
+ [debugger](http://caml.inria.fr/pub/docs/manual-ocaml/debugger.html), the
+ [documentation](https://github.com/ocaml/ocaml/tree/trunk/manual), and the
+ [compiler](https://github.com/ocaml/ocaml) itself. We'll have
+ [suggestions for mini-projects](https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on) for various levels of experience, but feel free to come along and work on whatever you fancy.
 
 Drinks and finger buffet will be provided.
 
