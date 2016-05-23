@@ -6,8 +6,8 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Fri, 20 May 2016 23:51:14 +0100</pubDate>
-    <lastBuildDate>Fri, 20 May 2016 23:51:14 +0100</lastBuildDate>
+    <pubDate>Mon, 23 May 2016 18:38:19 +0100</pubDate>
+    <lastBuildDate>Mon, 23 May 2016 18:38:19 +0100</lastBuildDate>
 
     
     <item>
@@ -32,9 +32,18 @@
 
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;Wiki&lt;/strong&gt;&lt;/em&gt;: https://github.com/ocamllabs/compiler-hacking/wiki&lt;/p&gt;
 
-&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/stdlib&quot;&gt;standard library&lt;/a&gt;, &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/byterun&quot;&gt;run&lt;/a&gt;&lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/asmrun&quot;&gt;time&lt;/a&gt;, tools (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml/depend.html&quot;&gt;ocamldep&lt;/a&gt;, &lt;a href=&quot;https://realworldocaml.org/v1/en/html/parsing-with-ocamllex-and-menhir.html&quot;&gt;ocamllex&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), &lt;a href=&quot;https://github.com/ocaml/camlp4&quot;&gt;camlp4&lt;/a&gt;, &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-400/manual032.html&quot;&gt;ocamlbuild&lt;/a&gt;, the &lt;a href=&quot;https://github.com/ocaml/ocaml-manual&quot;&gt;documentation&lt;/a&gt;, &lt;a href=&quot;https://opam.ocaml.org/&quot;&gt;OPAM&lt;/a&gt;, and the &lt;a href=&quot;https://github.com/ocaml/ocaml&quot;&gt;compiler&lt;/a&gt; itself. We&amp;#39;ll have &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;suggestions for mini-projects&lt;/a&gt; for various levels of experience, but feel free to come along and work on whatever you fancy.&lt;/p&gt;
+&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the
+ &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/stdlib&quot;&gt;standard library&lt;/a&gt;,
+ &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/byterun&quot;&gt;run&lt;/a&gt;&lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/asmrun&quot;&gt;time&lt;/a&gt;, tools
+    (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml/depend.html&quot;&gt;ocamldep&lt;/a&gt;,
+     &lt;a href=&quot;https://realworldocaml.org/v1/en/html/parsing-with-ocamllex-and-menhir.html&quot;&gt;ocamllex&lt;/a&gt;,
+     &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), the
+ &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml/debugger.html&quot;&gt;debugger&lt;/a&gt;, the
+ &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/manual&quot;&gt;documentation&lt;/a&gt;, and the
+ &lt;a href=&quot;https://github.com/ocaml/ocaml&quot;&gt;compiler&lt;/a&gt; itself. We&amp;#39;ll have
+ &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;suggestions for mini-projects&lt;/a&gt; for various levels of experience, but feel free to come along and work on whatever you fancy.&lt;/p&gt;
 
-&lt;p&gt;Drinks and finger buffet will be provided.&lt;/p&gt;
+&lt;p&gt;We&amp;#39;ve arranged a self-service buttery dinner at 6:30pm - please head to the buttery when you arrive and help yourself to the food choices available. You can then bring your dinner to the Old Library (just next door) to sit down and eat.&lt;/p&gt;
 </description>
     </item>
     
