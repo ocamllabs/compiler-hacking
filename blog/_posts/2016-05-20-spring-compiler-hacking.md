@@ -31,6 +31,6 @@ We're defining "compiler" pretty broadly, to include anything that's part of the
  [compiler](https://github.com/ocaml/ocaml) itself. We'll have
  [suggestions for mini-projects](https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on) for various levels of experience, but feel free to come along and work on whatever you fancy.
 
-Drinks and finger buffet will be provided.
+We've arranged a self-service buttery dinner at 6:30pm - please head to the buttery when you arrive and help yourself to the food choices available. You can then bring your dinner to the Old Library (just next door) to sit down and eat.
 
 [pembroke]: http://www.pem.cam.ac.uk/
