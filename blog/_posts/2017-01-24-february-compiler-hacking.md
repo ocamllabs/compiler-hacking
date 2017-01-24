@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  First 2017 compiler hacking evening at Pembroke
+title:  Sixteenth OCaml compiler hacking evening at Pembroke
 date:   2017-01-24 00:30:00
 ---
 
@@ -8,7 +8,7 @@ Happy New Year! Our first compiler hacking event of 2017 will be at Pembroke Col
 
 If you're planning to come along, it'd be helpful if you could [indicate interest via Doodle](http://doodle.com/poll/vgh3nq2q5wgnsi5y) and [sign up to the mailing list](http://lists.ocaml.org/admin/cam-compiler-hacking) to receive updates.
 
-_**Where**__: N7 Pembroke College  
+_**Where**_: N7 Pembroke College  
 Cambridge​  
 CB2 1RF  
 
