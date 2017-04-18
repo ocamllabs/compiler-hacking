@@ -6,9 +6,46 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Tue, 24 Jan 2017 00:53:32 +0000</pubDate>
-    <lastBuildDate>Tue, 24 Jan 2017 00:53:32 +0000</lastBuildDate>
+    <pubDate>Tue, 18 Apr 2017 12:16:29 +0100</pubDate>
+    <lastBuildDate>Tue, 18 Apr 2017 12:16:29 +0100</lastBuildDate>
 
+    
+    <item>
+      <title>Seventeenth OCaml compiler hacking evening at Pembroke</title>
+      <link>http://ocamllabs.github.com/compiler-hacking/2017/04/18/seventeenth-compiler-hacking-may.html</link>
+      <pubDate>Tue, 18 Apr 2017 12:00:00 +0100</pubDate>
+      <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
+      <guid>http://ocamllabs.github.com/compiler-hacking/2017/04/18/seventeenth-compiler-hacking-may</guid>
+      <description>&lt;p&gt;Our next OCaml Compiler Hacking event will be on Tuesday 16th May in The Old Library at Pembroke College, Cambridge.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;https://doodle.com/poll/dxvcih4d9en2t5vy&quot;&gt;indicate interest via Doodle&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/admin/cam-compiler-hacking&quot;&gt;sign up to the mailing list&lt;/a&gt; to receive updates.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Where&lt;/strong&gt;&lt;/em&gt;: The Old Library, Pembroke College​, ​Cambridge​ ​CB2 1RF&lt;/p&gt;
+
+&lt;p&gt;​The Old Library is the first building on the left straight after the Porters Lodge.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;When&lt;/strong&gt;&lt;/em&gt;: 6:30pm, Tuesday 16​th ​May&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Who&lt;/strong&gt;&lt;/em&gt;: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Refreshments&lt;/strong&gt;&lt;/em&gt;: either the Pembroke buttery between 5:45-6:45pm (cash only) or there will be a finger buffet in​ The Old Library​ itself.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;What&lt;/strong&gt;&lt;/em&gt;: fixing bugs, implementing new features, learning about OCaml internals&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Wiki&lt;/strong&gt;&lt;/em&gt;: https://github.com/ocamllabs/compiler-hacking/wiki&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;re defining &amp;quot;compiler&amp;quot; pretty broadly, to include anything that&amp;#39;s part of the standard distribution, which means at least the
+ &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/stdlib&quot;&gt;standard library&lt;/a&gt;,
+ &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/byterun&quot;&gt;run&lt;/a&gt;&lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/asmrun&quot;&gt;time&lt;/a&gt;, tools
+    (&lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml/depend.html&quot;&gt;ocamldep&lt;/a&gt;,
+     &lt;a href=&quot;https://realworldocaml.org/v1/en/html/parsing-with-ocamllex-and-menhir.html&quot;&gt;ocamllex&lt;/a&gt;,
+     &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html&quot;&gt;ocamlyacc&lt;/a&gt;, etc.), the
+ &lt;a href=&quot;http://caml.inria.fr/pub/docs/manual-ocaml/debugger.html&quot;&gt;debugger&lt;/a&gt;, the
+ &lt;a href=&quot;https://github.com/ocaml/ocaml/tree/trunk/manual&quot;&gt;documentation&lt;/a&gt;, and the
+ &lt;a href=&quot;https://github.com/ocaml/ocaml&quot;&gt;compiler&lt;/a&gt; itself. We&amp;#39;ll have
+ &lt;a href=&quot;https://github.com/ocamllabs/compiler-hacking/wiki/Things-to-work-on&quot;&gt;suggestions for mini-projects&lt;/a&gt; for various levels of experience, but feel free to come along and work on whatever you fancy.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Sixteenth OCaml compiler hacking evening at Pembroke</title>
