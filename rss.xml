@@ -6,9 +6,39 @@
     <atom:link href="http://ocamllabs.github.com/compiler-hacking/rss.xml" rel="self" type="application/rss+xml" />
     <description>OCaml Labs compiler hacking sessions</description>
     <language>en-us</language>
-    <pubDate>Tue, 18 Apr 2017 12:16:29 +0100</pubDate>
-    <lastBuildDate>Tue, 18 Apr 2017 12:16:29 +0100</lastBuildDate>
+    <pubDate>Tue, 21 Nov 2017 21:26:03 +0000</pubDate>
+    <lastBuildDate>Tue, 21 Nov 2017 21:26:03 +0000</lastBuildDate>
 
+    
+    <item>
+      <title>Eighteenth OCaml compiler hacking evening at Pembroke, Cambridge</title>
+      <link>http://ocamllabs.github.com/compiler-hacking/2017/11/21/eighteenth-compiler-hacking-december.html</link>
+      <pubDate>Tue, 21 Nov 2017 21:00:00 +0000</pubDate>
+      <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
+      <guid>http://ocamllabs.github.com/compiler-hacking/2017/11/21/eighteenth-compiler-hacking-december</guid>
+      <description>&lt;p&gt;Our next OCaml Compiler Hacking event will be on Thursday 7th December in The Thomas Gray Room at Pembroke College, Cambridge.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;https://doodle.com/poll/khqk6i49r4828apu&quot;&gt;indicate interest via Doodle&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/admin/cam-compiler-hacking&quot;&gt;sign up to the mailing list&lt;/a&gt; to receive updates.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;When&lt;/strong&gt;&lt;/em&gt;: Thursday 7 December 2017, 19:00 - 22:30&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Where&lt;/strong&gt;&lt;/em&gt;: The Thomas Gray Room, Pembroke College, Cambridge CB2 1RF&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Who&lt;/strong&gt;&lt;/em&gt;: anyone interested in improving OCaml. Knowledge of OCaml programming will obviously be helpful, but prior experience of working on OCaml internals isn&amp;#39;t necessary.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Refreshments&lt;/strong&gt;&lt;/em&gt;: Finger buffet in hack room.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;What&lt;/strong&gt;&lt;/em&gt;: fixing bugs, implementing new features, learning about OCaml internals&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Wiki&lt;/strong&gt;&lt;/em&gt;: https://github.com/ocamllabs/compiler-hacking/wiki&lt;/p&gt;
+
+&lt;p&gt;This hack evening focuses on fixing up opam packages as well as work on the OCaml compiler.&lt;/p&gt;
+
+&lt;p&gt;The OCaml 4.06 release featured safe-string as the default rather than optional as per previous releases. The focus of this event will be to work on the opam repository to fix up as many packages as possible, and also to publish a guide on &lt;a href=&quot;http://ocamllabs.io/&quot;&gt;ocamllabs.io&lt;/a&gt; detailing how to migrate your packages for wider use.&lt;/p&gt;
+
+&lt;p&gt;The evening will also feature a short (5-10 min) presentation about recent &lt;a href=&quot;http://marrakech2017.mirage.io/&quot;&gt;MirageOS Marrakech Hack Retreat&lt;/a&gt;.​&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Seventeenth OCaml compiler hacking evening at Pembroke</title>
@@ -297,7 +327,7 @@ CB2 1RF  &lt;/p&gt;
 
 &lt;h3&gt;Further details&lt;/h3&gt;
 
-&lt;p&gt;&lt;strong&gt;Where&lt;/strong&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW26&amp;amp;amp;labels=1&quot;&gt;FW26&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Where&lt;/strong&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW26&amp;amp;labels=1&quot;&gt;FW26&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;When&lt;/strong&gt;: 3.30pm (workshop); 6.30pm (compiler hacking), Friday 28th August 2015&lt;/p&gt;
 
@@ -386,7 +416,7 @@ work on.&lt;/p&gt;
 &lt;h3&gt;Further details&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Where&lt;/strong&gt;:
-  Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
+  Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;When&lt;/strong&gt;: 6pm, Tuesday 10th February&lt;/p&gt;
 
@@ -440,7 +470,7 @@ work on.&lt;/p&gt;
       <pubDate>Thu, 24 Jul 2014 10:00:00 +0100</pubDate>
       <author>cl-ocamllabs@lists.cam.ac.uk (OCaml Labs)</author>
       <guid>http://ocamllabs.github.com/compiler-hacking/2014/07/24/compiler-hacking-at-citrix</guid>
-      <description>&lt;p&gt;For the seventh Cambridge OCaml compiler-hacking session we&amp;#39;ll be meeting at &lt;a href=&quot;https://maps.google.co.uk/maps?q=101+Cambridge+Science+Park+Milton+Road,+Cambridge&amp;amp;hl=en&amp;amp;ll=52.232955,0.150338&amp;amp;spn=0.003082,0.006947&amp;amp;sll=52.231717,0.144648&amp;amp;sspn=0.012327,0.027788&amp;amp;oq=101Cambrideg+Science&amp;amp;t=h&amp;amp;hq=101+Cambridge+Science+Park+Milton+Road,&amp;amp;hnear=Cambridge,+United+Kingdom&amp;amp;z=18&quot;&gt;the Citrix office in the Cambridge Science Park&lt;/a&gt; on 6.30pm Friday 1st August.  Thanks to Citrix for supporting and hosting the session!&lt;/p&gt;
+      <description>&lt;p&gt;For the seventh Cambridge OCaml compiler-hacking session we&amp;#39;ll be meeting at &lt;a href=&quot;https://maps.google.co.uk/maps?q=101+Cambridge+Science+Park+Milton+Road,+Cambridge&amp;hl=en&amp;ll=52.232955,0.150338&amp;spn=0.003082,0.006947&amp;sll=52.231717,0.144648&amp;sspn=0.012327,0.027788&amp;oq=101Cambrideg+Science&amp;t=h&amp;hq=101+Cambridge+Science+Park+Milton+Road,&amp;hnear=Cambridge,+United+Kingdom&amp;z=18&quot;&gt;the Citrix office in the Cambridge Science Park&lt;/a&gt; on 6.30pm Friday 1st August.  Thanks to Citrix for supporting and hosting the session!&lt;/p&gt;
 
 &lt;p&gt;We&amp;#39;ll kick off with a demo from &lt;a href=&quot;https://github.com/def-lkb&quot;&gt;Frédéric Bour&lt;/a&gt; of modular implicits, an OCaml extension that adds support for overloading.&lt;/p&gt;
 
@@ -448,7 +478,7 @@ work on.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Where&lt;/strong&gt;:
   Citrix Systems Research &amp;amp; Development Ltd.&lt;br&gt;
-  &lt;a href=&quot;https://maps.google.co.uk/maps?q=101+Cambridge+Science+Park+Milton+Road,+Cambridge&amp;amp;hl=en&amp;amp;ll=52.232955,0.150338&amp;amp;spn=0.003082,0.006947&amp;amp;sll=52.231717,0.144648&amp;amp;sspn=0.012327,0.027788&amp;amp;oq=101Cambrideg+Science&amp;amp;t=h&amp;amp;hq=101+Cambridge+Science+Park+Milton+Road,&amp;amp;hnear=Cambridge,+United+Kingdom&amp;amp;z=18&quot;&gt;Building 101&lt;/a&gt;&lt;br&gt;
+  &lt;a href=&quot;https://maps.google.co.uk/maps?q=101+Cambridge+Science+Park+Milton+Road,+Cambridge&amp;hl=en&amp;ll=52.232955,0.150338&amp;spn=0.003082,0.006947&amp;sll=52.231717,0.144648&amp;sspn=0.012327,0.027788&amp;oq=101Cambrideg+Science&amp;t=h&amp;hq=101+Cambridge+Science+Park+Milton+Road,&amp;hnear=Cambridge,+United+Kingdom&amp;z=18&quot;&gt;Building 101&lt;/a&gt;&lt;br&gt;
   Cambridge Science Park&lt;br&gt;
   Milton Road&lt;br&gt;
   Cambridge, CB4 0FY&lt;br&gt;
@@ -514,7 +544,7 @@ work on.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ocaml&quot; data-lang=&quot;ocaml&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;F&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;functor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;U&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Since Thomas&amp;#39;s patch has been merged into trunk, you can try out the new syntax using the &lt;a href=&quot;http://alan.petitepomme.net/cwn/2014.05.27.html#2&quot;&gt;4.02.0 beta&lt;/a&gt;, which is available as a compiler switch in the OPAM repository:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;opam switch 4.02.0+trunk
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;opam switch &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;.02.0+trunk
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The next step is to find out whether the verbose syntax was a symptom or a cause of the infrequency of higher-order functors in OCaml code.  Will we see a surge in the popularity of higher-order modules as the syntax becomes more accommodating?&lt;/p&gt;
 
@@ -572,7 +602,7 @@ work on.&lt;/p&gt;
 &lt;p&gt;On the evening of the last compiler hacking meeting, Leo &lt;a href=&quot;http://caml.inria.fr/mantis/view.php?id=5584#c11335&quot;&gt;completed&lt;/a&gt; the patch; shortly afterwards it was &lt;a href=&quot;https://github.com/ocaml/ocaml/commit/b56dc4b3df8d022b54f40682a9d5d4168c690413&quot;&gt;merged to trunk&lt;/a&gt;, ready for inclusion in &lt;a href=&quot;http://alan.petitepomme.net/cwn/2014.05.27.html#2&quot;&gt;OCaml 4.02&lt;/a&gt;!&lt;/p&gt;
 
 &lt;p&gt;Extensible variants are a significant addition to the language, and there&amp;#39;s more to them than these simple examples show.  A forthcoming post from Leo will describe the new feature in more detail.  In the meantime, since they&amp;#39;ve been merged into the 4.02 release candidate, you can try them out with OPAM:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;opam switch 4.02.0+trunk
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;opam switch &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;.02.0+trunk
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a name=&quot;lazy-record-fields&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -654,7 +684,7 @@ by &lt;a href=&quot;http://www.flickr.com/photos/h-k-d/&quot;&gt;Hartwig HKD&lt;
 
 &lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/2ps9gunbkiy3tp6i&quot;&gt;&lt;em&gt;indicate interest via Doodle&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;&lt;em&gt;sign up to the mailing list&lt;/em&gt;&lt;/a&gt; to receive updates:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;When&lt;/em&gt;: 6.30pm, Wednesday 25th June&lt;/p&gt;
 
@@ -680,7 +710,7 @@ by &lt;a href=&quot;http://www.flickr.com/photos/h-k-d/&quot;&gt;Hartwig HKD&lt;
 
 &lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/iapgw89dvmxhnb4e&quot;&gt;&lt;em&gt;indicate interest via Doodle&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;&lt;em&gt;sign up to the mailing list&lt;/em&gt;&lt;/a&gt; to receive updates:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;When&lt;/em&gt;: 6pm, Tuesday 29th April&lt;/p&gt;
 
@@ -706,7 +736,7 @@ by &lt;a href=&quot;http://www.flickr.com/photos/h-k-d/&quot;&gt;Hartwig HKD&lt;
 
 &lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/5tk8rs5k3mh82qqx&quot;&gt;&lt;em&gt;indicate interest via Doodle&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;&lt;em&gt;sign up to the mailing list&lt;/em&gt;&lt;/a&gt; to receive updates:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;When&lt;/em&gt;: 6pm, Tuesday 18th February&lt;/p&gt;
 
@@ -998,7 +1028,7 @@ In their 2008 paper &lt;a href=&quot;http://www.univ-orleans.fr/lifo/Members/Dav
 
 &lt;p&gt;If you&amp;#39;re planning to come along, it&amp;#39;d be helpful if you could &lt;a href=&quot;http://doodle.com/czzp7ik4r72npz6p&quot;&gt;&lt;em&gt;indicate interest via Doodle&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://lists.ocaml.org/listinfo/cam-compiler-hacking&quot;&gt;&lt;em&gt;sign up to the mailing list&lt;/em&gt;&lt;/a&gt; to receive updates:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Where&lt;/em&gt;: Room &lt;a href=&quot;http://www.cl.cam.ac.uk/research/dtg/openroommap/static/?s=FW11&amp;amp;labels=1&quot;&gt;FW11&lt;/a&gt;, &lt;a href=&quot;http://www.cl.cam.ac.uk/directions/&quot;&gt;Computer Laboratory, Madingley Road&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;When&lt;/em&gt;: 6pm, Wednesday 6th November&lt;/p&gt;
 

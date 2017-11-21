@@ -66,7 +66,7 @@
 <div class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span></span><span class="k">module</span> <span class="k">type</span> <span class="nc">F</span> <span class="o">=</span> <span class="k">functor</span> <span class="o">(</span><span class="nc">X</span> <span class="o">:</span> <span class="nc">R</span><span class="o">)</span> <span class="o">(</span><span class="nc">Y</span> <span class="o">:</span> <span class="nc">S</span><span class="o">)</span> <span class="o">(</span><span class="nc">Z</span> <span class="o">:</span> <span class="nc">T</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="nc">U</span>
 </code></pre></div>
 <p>Since Thomas&#39;s patch has been merged into trunk, you can try out the new syntax using the <a href="http://alan.petitepomme.net/cwn/2014.05.27.html#2">4.02.0 beta</a>, which is available as a compiler switch in the OPAM repository:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>opam switch 4.02.0+trunk
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>opam switch <span class="m">4</span>.02.0+trunk
 </code></pre></div>
 <p>The next step is to find out whether the verbose syntax was a symptom or a cause of the infrequency of higher-order functors in OCaml code.  Will we see a surge in the popularity of higher-order modules as the syntax becomes more accommodating?</p>
 
@@ -124,7 +124,7 @@
 <p>On the evening of the last compiler hacking meeting, Leo <a href="http://caml.inria.fr/mantis/view.php?id=5584#c11335">completed</a> the patch; shortly afterwards it was <a href="https://github.com/ocaml/ocaml/commit/b56dc4b3df8d022b54f40682a9d5d4168c690413">merged to trunk</a>, ready for inclusion in <a href="http://alan.petitepomme.net/cwn/2014.05.27.html#2">OCaml 4.02</a>!</p>
 
 <p>Extensible variants are a significant addition to the language, and there&#39;s more to them than these simple examples show.  A forthcoming post from Leo will describe the new feature in more detail.  In the meantime, since they&#39;ve been merged into the 4.02 release candidate, you can try them out with OPAM:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>opam switch 4.02.0+trunk
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>opam switch <span class="m">4</span>.02.0+trunk
 </code></pre></div>
 <p><a name="lazy-record-fields"></a></p>
 
